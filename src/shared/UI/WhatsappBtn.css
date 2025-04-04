@@ -1,0 +1,12 @@
+.whatsapp_btn {
+  position: fixed;
+  bottom: calc(var(--spacing) * 6);
+  right: calc(var(--spacing) * 6);
+  background-color: var(--color-green-600);
+  color: #fff;
+  padding: calc(var(--spacing) * 4);
+  border-radius: var(--rounded-full);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  /* fixed bottom-6 right-6 bg-green-600 text-white p-4 rounded-full shadow-lg */
+}

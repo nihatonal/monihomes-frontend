@@ -1,0 +1,120 @@
+{
+    "nav": {
+        "home": "Home",
+        "rooms": "Rooms",
+        "reservation": "Reservation",
+        "reviews": "Reviews",
+        "location": "Location",
+        "contact": "Contact"
+    },
+    "hero": {
+        "title": "An Unforgettable Holiday in the Heart of Fethiye",
+        "description": "3 comfortable rooms, free Wi-Fi, air conditioning, and more for a relaxing stay.",
+        "cta": "Book Now",
+        "subtitle": "Experience a holiday where you’ll feel at home in Fethiye's peaceful atmosphere."
+    },
+    "reservation": {
+        "title": "Monihomes | A Comfortable Stay Awaits You! Book Now!",
+        "option_title": "Reservation Options",
+        "question": "Please choose an option to make a reservation",
+        "form": "Continue by Filling the Form",
+        "airbnb": "Airbnb",
+        "google": "Google",
+        "form_title": "Hello! I would like to ask you a few questions to assist you better.",
+        "step0": {
+            "message": "Hello! Are you considering staying at Monihomes? Let's reserve the most suitable dates for you. First, please select your check-in and check-out dates."
+        },
+        "step1": {
+            "name": "Can I first get your name?",
+            "nameholder": "Name Surname",
+            "guests": "How many guests will be coming?"
+        },
+        "step2": {
+            "checkin": "You are planning to check-in on this date.",
+            "checkout": "You will be checking out on this date."
+        },
+        "step3": {
+            "phone": "Can I have your phone number?",
+            "email": "Please leave your email address as well.",
+            "completed": "Complete Now"
+        },
+        "success": {
+            "message": "Your reservation has been successfully submitted! We will contact you soon.",
+            "button": "Return to Home"
+        },
+        "next": "Next",
+        "previous": "Previous",
+        "submit": "Submit",
+        "error": {
+            "required": "This field is required.",
+            "invalid_email": "Please enter a valid email address.",
+            "invalid_phone": "Please enter a valid phone number.",
+            "date_unavailable": "Selected dates are unavailable."
+        }
+    },
+    "rooms": {
+        "title": "Comfortable and Modern Rooms",
+        "subtitle": "Spacious and modern rooms at Monihomes designed for your comfort.",
+        "features": {
+            "apartment": "1+1 Apartment Concept",
+            "ac": "Air Conditioning",
+            "wifi": "Free WiFi",
+            "laundry": "Washing and Drying Machine",
+            "location": "Great Location in Fethiye Center"
+        },
+        "cta": "Book Now"
+    },
+    "owner": {
+        "title": "Meet Our Hotel Owner",
+        "description": "As the founder and operator of Monihomes Hotel, I take pride in providing our guests with the most comfortable and peaceful accommodation experience.",
+        "alt": "Photo of the hotel owner"
+    },
+    "reviews": {
+        "title": "What Our Guests Say?"
+    },
+    "fethiye": {
+        "title": "Stay in the Heart of Fethiye!",
+        "description": "Enjoy a comfortable and peaceful stay just steps away from the city's most special spots.",
+        "button": "Book Now"
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "questions": [
+            {
+                "question": "Is there parking available?",
+                "answer": "Yes, we have a paid parking area."
+            },
+            {
+                "question": "Do you accept pets?",
+                "answer": "Unfortunately, we do not accept pets."
+            },
+            {
+                "question": "What are the check-in and check-out times?",
+                "answer": "Check-in is at 14:00, and check-out is at 12:00."
+            },
+            {
+                "question": "What are the available payment options?",
+                "answer": "We accept payments in cash and via bank transfer. Please contact us for bank details or further assistance."
+            }
+        ]
+    },
+    "instagram_title": "Follow Us on Instagram",
+    "contact_title": "Contact Us",
+    "contact_description": "You can reach us anytime. We are here to answer your questions.",
+    "contact_info_title": "Contact Information",
+    "contact_phone": "Phone",
+    "contact_email": "Email",
+    "contact_address": "Address",
+    "contact_form_title": "Send Us a Message",
+    "contact_name_placeholder": "Your Name",
+    "contact_email_placeholder": "Your Email",
+    "contact_message_placeholder": "Your Message",
+    "contact_submit_button": "Send Message",
+    "contact_map_title": "Find Us Here",
+    "footer": {
+        "menu": "Menu",
+        "socials": "Follow Us",
+        "subtitle": "Monihomes – A comfortable accommodation experience in Fethiye.",
+        "success": "Your message has been successfully sent! We will contact you soon."
+    }
+}

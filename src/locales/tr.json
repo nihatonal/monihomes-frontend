@@ -1,0 +1,119 @@
+{
+  "nav": {
+    "home": "Ana Sayfa",
+    "rooms": "Odalar",
+    "reservation": "Rezervasyon",
+    "reviews": "Yorumlar",
+    "location": "Lokasyon",
+    "contact": "İletişim"
+  },
+  "hero": {
+    "title": "Fethiye'nin Kalbinde Unutulmaz Bir Tatil",
+    "description": "3 konforlu oda, ücretsiz Wi-Fi, klima ve daha fazlasıyla rahat bir konaklama deneyimi.",
+    "cta": "Şimdi Rezervasyon Yap",
+    "subtitle": "Fethiye'nin huzur dolu atmosferinde, kendinizi evinizde hissedeceğiniz bir tatil deneyimi."
+  },
+  "reservation": {
+    "title": "Monihomes | Konforlu Bir Konaklama Sizi Bekliyor! Hemen Rezerve Edin!",
+    "form_title": "Merhaba! Sana yardımcı olabilmem için bazı soruları yanıtlamanı rica edeceğim.",
+    "option_title": "Rezervasyon Seçenekleri",
+    "question": "Lütfen rezervasyon yapmak için bir seçenek seçin",
+    "form": "Formu Doldurarak Devam Et",
+    "step0": {
+      "message": "Merhaba! Monihomes'ta konaklamayı mı düşünüyorsunuz? Size en uygun tarihleri ayırtalım. Öncelikle giriş ve çıkış tarihinizi seçin."
+    },
+    "step1": {
+      "name": "Öncelikle adını öğrenebilir miyim?",
+      "nameholder": "Ad-Soyad",
+      "guests": "Kaç kişi geleceksiniz?"
+    },
+    "step2": {
+      "checkin": "Bu tarihte sizi bekliyoruz.",
+      "checkout": "Bu tarihte çıkış yapacaksınız."
+    },
+    "step3": {
+      "phone": "Telefon numaranızı alabilir miyim?",
+      "email": "E-mail adresinizi de bırakır mısınız?",
+      "completed": "Hemen Tamamla"
+    },
+    "success": {
+      "message": "Rezervasyonunuz başarıyla gönderildi! Sizinle yakında iletişime geçeceğiz.",
+      "button": "Ana Sayfaya Dön"
+    },
+    "next": "İleri",
+    "previous": "Geri",
+    "submit": "Gönder",
+    "selectedRange": "Seçilen tarihler",
+    "error": {
+      "required": "Bu alan zorunludur.",
+      "invalid_email": "Lütfen geçerli bir e-posta adresi girin.",
+      "invalid_phone": "Lütfen geçerli bir telefon numarası girin.",
+      "date_unavailable": "Seçilen tarihler uygun değil."
+    }
+  },
+  "rooms": {
+    "title": "Konforlu ve Modern Odalar",
+    "subtitle": "Monihomes'te rahatınızı ön planda tutan ferah ve modern odalar sizi bekliyor.",
+    "features": {
+      "apartment": "1+1 Daire Konsepti",
+      "ac": "Klima",
+      "wifi": "Ücretsiz WiFi",
+      "laundry": "Çamaşır ve Kurutma Makinesi",
+      "location": "Fethiye Merkez’de Harika Konum"
+    },
+    "cta": "Rezervasyon Yap"
+  },
+  "owner": {
+    "title": "Otel Sahibimizle Tanışın",
+    "description": "Monihomes otelinin kurucusu ve işletmecisi olarak, misafirlerimize en konforlu ve huzurlu konaklama deneyimini sunmaktan gurur duyuyorum.",
+    "alt": "Otel sahibi fotoğrafı"
+  },
+  "reviews": {
+    "title": " Misafirlerimiz Ne Diyor?"
+  },
+  "fethiye": {
+    "title": "Fethiye'nin Kalbinde Konaklayın!",
+    "description": "Şehrin en özel noktalarına sadece birkaç adım mesafede, rahat ve huzurlu bir konaklama deneyimi sizi bekliyor.",
+    "button": "Hemen Rezervasyon Yap"
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "questions": [
+      {
+        "question": "Otopark var mı?",
+        "answer": "Evet, ücretli otoparkımız mevcuttur."
+      },
+      {
+        "question": "Evcil hayvan kabul ediyor musunuz?",
+        "answer": "Maalesef evcil hayvan kabul edemiyoruz."
+      },
+      {
+        "question": "Giriş-çıkış saatleri nedir?",
+        "answer": "Giriş saati 14:00, çıkış saati ise 12:00'dir."
+      },
+      {
+        "question": "Hangi ödeme seçenekleri mevcut?",
+        "answer": "Nakit ve banka havalesi ile ödeme kabul ediyoruz. Banka bilgileri veya daha fazla destek için lütfen bizimle iletişime geçin."
+      }
+    ]
+  },
+  "instagram_title": "Instagram'da Bizi Takip Edin",
+  "contact_title": "Bize Ulaşın",
+  "contact_description": "Bize her zaman ulaşabilirsiniz. Sorularınızı yanıtlamak için buradayız.",
+  "contact_info_title": "İletişim Bilgileri",
+  "contact_phone": "Telefon",
+  "contact_email": "E-posta",
+  "contact_address": "Adres",
+  "contact_form_title": "Bize Bir Mesaj Gönderin",
+  "contact_name_placeholder": "Adınız",
+  "contact_email_placeholder": "E-posta Adresiniz",
+  "contact_message_placeholder": "Mesajınız",
+  "contact_submit_button": "Mesaj Gönder",
+  "contact_map_title": "Bizi Buradan Bulabilirsiniz",
+  "footer": {
+    "menu": "Menu",
+    "socials": "Bizi Takip Edin",
+    "subtitle": "Monihomes – Fethiye’de konforlu bir konaklama deneyimi.",
+    "success": "Mesajınız başarıyla gönderildi! Sizinle en kısa sürede iletişime geçeceğiz."
+  }
+}
