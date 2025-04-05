@@ -7,11 +7,11 @@ const Hero = () => {
     const { t } = useTranslation();
 
     return (
-        <section id="home" className="relative w-full h-screen bg-white">
+        <section id="home" className="relative w-full h-screen bg-white ">
             <div
                 className="relative w-full h-full flex flex-col justify-center items-center text-center text-white p-4 
             px-4 lg:px-8 xl:px-16 rounded-b-[350px] rounded-br-[0] 
-            before:absolute before:inset-0 before:bg-black/30 before:rounded-b-[350px] before:rounded-br-[0]"
+            before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/60 before:to-transparent before:rounded-b-[350px] before:rounded-br-[0]"
                 style={{
                     backgroundImage: `url(${backgroundImage})`,
                     backgroundSize: "cover", // Resmi ekranın tamamına sığdırır.
@@ -42,7 +42,7 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <Link to="reservation" smooth={true} duration={500}>
+                    <Link to="reservation" smooth={true} duration={500} aria-label="reservasyon yapma">
                         <button className="relative z-90 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg">
                             {t("hero.cta")}
                         </button>

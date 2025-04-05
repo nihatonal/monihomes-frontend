@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import profil from '../../assets/images/profil.jpeg'
 export default function OwnerBanner() {
     const { t } = useTranslation();
     return (
@@ -18,23 +17,21 @@ export default function OwnerBanner() {
                     <p className="text-lg text-gray-600 mb-6">
                         {t("owner.description")}
                     </p>
-                    <p className="text-gray-700 font-semibold">- Uğur Dinçer</p>
+                    <p className="text-gray-700 font-semibold">- Uğur Dinç</p>
                 </motion.div>
 
                 {/* Fotoğraf Bölümü */}
-                <motion.div
-                    initial={{ opacity: 0, x: 50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                    className="flex justify-center"
-                >
-                    <img
-                        src={profil}
+                <div className="flex justify-center rounded-full">
+                    <motion.img
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                       src={"https://i.imgur.com/LSbSjyv.webp"}
                         alt={t("owner.alt")}
-                        className="w-48 h-48 rounded-full object-cover shadow-lg"
+                        className="w-48 h-48 rounded-full object-cover shadow-lg "
                     />
-                </motion.div>
+                </div>
             </div>
         </section>
     );

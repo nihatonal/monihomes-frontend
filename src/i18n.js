@@ -15,8 +15,8 @@ i18n
         translation: require("./locales/ru.json")
       }
     },
-    lng: "en", // Varsayılan dil
-    fallbackLng: "en",
+    lng: "tr", // Varsayılan dil
+    fallbackLng: "tr",
     interpolation: {
       escapeValue: false
     }

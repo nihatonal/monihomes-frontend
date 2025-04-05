@@ -31,7 +31,9 @@ function FethiyeBanner(props) {
                     <Link to="reservation"
                         className="mt-6 inline-block bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
                         smooth={true}
-                        duration={500}>
+                        duration={500}
+                        aria-label="reservasyon yapma"
+                        >
                         {t("fethiye.button")}
 
                     </Link>
@@ -93,14 +95,14 @@ function FethiyeBanner(props) {
                         <SwiperSlide>
                             <img
                                 src={coast}
-                                alt={`Fethiye Paspatur`}
+                                alt={`Fethiye Sahil kordon yürüyüş yolu`}
                                 className="w-full h-full object-cover cursor-pointer"
                             />
                         </SwiperSlide>
                         <SwiperSlide>
                             <img
                                 src={fish_restaurant}
-                                alt={`Fethiye Paspatur`}
+                                alt={`Fethiye balık hali`}
                                 className="w-full h-full object-cover cursor-pointer"
                             />
                         </SwiperSlide>

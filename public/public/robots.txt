@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://67f136c33dca11a7148e77c3--monihomes.netlify.app/sitemap.xml

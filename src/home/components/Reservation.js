@@ -20,7 +20,6 @@ const Reservation = () => {
     const [reservedDates, setReservedDates] = useState([]);
     const [events, setEvents] = useState([]);
     const [token, setToken] = useState(null);
-    const [user, setUser] = useState(null);
     const calendarID = process.env.REACT_APP_CALENDAR_ID;
     const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
     // 1: Ad-Soyad, 2: Check-in/Check-out, 3: Phone/Email
@@ -124,7 +123,7 @@ const Reservation = () => {
         fetchEvents();
     }, [calendarID, apiKey]);
 
-    ///
+    /// dolu gunlerin tespiti
     const [markedDates, setMarkedDates] = useState([]);
     const [datess, setDatess] = useState([]);
 
@@ -211,6 +210,7 @@ const Reservation = () => {
             "visibility": "default",
             colorId: "6"
         };
+
         var res = await axios.post(
 
             `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events`,
@@ -221,16 +221,10 @@ const Reservation = () => {
 
     const handleDateChange = (range) => {
         const [start, end] = range;
-        //state.formStep === 0 && handleLogin()
 
         setSelectedRange(range);
         setShowFormError(false);
-        // if (state.formStep === 1) {
-        //     dispatch({ type: 'SET_FORM_STEP', payload: 2 })
-        // }
-
-
-        //2025-04-15
+  
         state.formValues.checkIn = moment(new Date(start)).format("YYYY-MM-DD")
         state.formValues.checkOut = moment(new Date(end)).format("YYYY-MM-DD")
         // Seçilen aralığın dolu olup olmadığını kontrol et
@@ -307,7 +301,7 @@ const Reservation = () => {
             if (response.status === 200) {
 
                 dispatch({ type: 'SET_FORM_STEP', payload: 5 });
-                inserisciTurni("ya29.a0AeXRPp4OICqvE0t3p5nPKUQZmJwLhs5tQu-9tAiHGWXEaz5bEUN6jCSKFEmsMIqF1GmVItz-ii2V3EXOjBKpbCD4Cj58wWIMRgS2MpIUZy-DuPXDe4pW5a0sRkENL6tNCPcdPdDppBMtm24pJZoLkzXAzKSHYGgDq4z7j7LraCgYKAW0SARASFQHGX2MiDKnUSKgdjsWfI0gbnL_jig0175");
+                inserisciTurni(token);
 
             } else {
                 throw new Error("Rezervasyon başarısız oldu.");
@@ -354,7 +348,7 @@ const Reservation = () => {
 
             const userInfo = await res.json();
             dispatch({ type: 'SET_FORM_STEP', payload: 1 });
-            setUser(userInfo);
+           
             state.formValues.name = userInfo.name
             state.formValues.email = userInfo.email
         },

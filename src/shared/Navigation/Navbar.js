@@ -45,14 +45,14 @@ const Navbar = () => {
     return (
         <nav
 
-            className={`fixed top-0 w-full px-6 shadow-lg z-50 transition-all 
-            hover:bg-gradient-to-r hover:from-stone-700 hover:via-stone-500 hover:to-stone-400  
-            ${showNavbar ? "translate-y-0 " : "-translate-y-full"}
-            ${lastScrollY === 0 ? " bg-transparent transition-all " : "bg-gradient-to-r from-stone-700 via-stone-500 to-stone-400 transition-all "}
-            `}
+            className={`fixed top-0 w-full z-50 shadow-lg transition-all
+        ${showNavbar ? "translate-y-0" : "-translate-y-full"}
+        ${lastScrollY === 0
+                    ? "bg-gradient-to-r from-stone-700 via-stone-500 to-stone-400"
+                    : "bg-gradient-to-r from-stone-700 via-stone-500 to-stone-400"}
+    `}
         >
-            <div className="container mx-auto flex justify-between items-center 
-            py-4 px-4 pl-0 lg:px-8 xl:px-16">
+            <div className="w-full max-w-screen-xl mx-auto flex justify-between items-center py-4 px-4 lg:px-8 xl:px-16">
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -63,6 +63,7 @@ const Navbar = () => {
                         to={"home"}
                         smooth={true}
                         duration={500}
+                        aria-label="Ana sayfa"
                         className="block shadow shadow-stone-800 bg-stone-800 p-2 rounded-full"
                     >
                         <img src={logo} className='h-[40px] lg:h-[60px]' alt='monihomes-fethiye-logo' />
@@ -77,6 +78,7 @@ const Navbar = () => {
                             to={link.to}
                             smooth={true}
                             duration={500}
+                            aria-label={link.to}
                             className="text-white cursor-pointer hover:text-yellow-300 transition"
                         >
                             {t(`nav.${link.name}`)}
@@ -110,6 +112,7 @@ const Navbar = () => {
                             to={link.to}
                             smooth={true}
                             duration={500}
+                            aria-label={link.to}
                             className="block text-white text-lg cursor-pointer hover:text-yellow-300"
                             onClick={() => setIsOpen(false)}
                         >

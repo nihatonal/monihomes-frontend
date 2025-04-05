@@ -18,6 +18,8 @@
     "form_title": "Merhaba! Sana yardımcı olabilmem için bazı soruları yanıtlamanı rica edeceğim.",
     "option_title": "Rezervasyon Seçenekleri",
     "question": "Lütfen rezervasyon yapmak için bir seçenek seçin",
+    "airbnb": "Airbnb",
+    "google": "Google",
     "form": "Formu Doldurarak Devam Et",
     "step0": {
       "message": "Merhaba! Monihomes'ta konaklamayı mı düşünüyorsunuz? Size en uygun tarihleri ayırtalım. Öncelikle giriş ve çıkış tarihinizi seçin."
@@ -34,7 +36,7 @@
     "step3": {
       "phone": "Telefon numaranızı alabilir miyim?",
       "email": "E-mail adresinizi de bırakır mısınız?",
-      "completed": "Hemen Tamamla"
+      "completed": "Tamamla"
     },
     "success": {
       "message": "Rezervasyonunuz başarıyla gönderildi! Sizinle yakında iletişime geçeceğiz.",
@@ -89,11 +91,12 @@
       },
       {
         "question": "Giriş-çıkış saatleri nedir?",
-        "answer": "Giriş saati 14:00, çıkış saati ise 12:00'dir."
+        "answer": "Giriş saati 15:00-22:00, çıkış saati ise 10:00'dir."
       },
       {
         "question": "Hangi ödeme seçenekleri mevcut?",
-        "answer": "Nakit ve banka havalesi ile ödeme kabul ediyoruz. Banka bilgileri veya daha fazla destek için lütfen bizimle iletişime geçin."
+        "answer": "Ödemeleri nakit, banka havalesi ve kredi kartı ile kabul ediyoruz. Banka bilgileri veya daha fazla bilgi için lütfen bizimle iletişime geçin."
+
       }
     ]
   },

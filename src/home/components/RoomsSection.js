@@ -67,7 +67,9 @@ const RoomsSection = () => {
                     <Link to="reservation"
                         className="px-6 py-3 mt-10 ml-auto bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
                         smooth={true}
-                        duration={500}>
+                        duration={500}
+                        aria-label="Rezervasyon yapma"
+                        >
                         {t("rooms.cta")}
                     </Link>
 
@@ -86,7 +88,7 @@ const RoomsSection = () => {
                             <SwiperSlide key={index}>
                                 <img
                                     src={image.image}
-                                    alt={`Room ${index + 1}`}
+                                    alt={`Room oda resimleri ${index + 1}`}
                                     className="w-full h-full object-cover rounded-t-lg lg:rounded-lg cursor-pointer"
                                     onClick={() => openModal(index)}
                                 />

@@ -22,7 +22,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
                 {/* Logo */}
                 <div className="flex sm:flex-col items-center sm:items-start">
-                    <img src={logo} alt="Logo" className="w-28 mb-4" />
+                    <img src={logo} alt="monihomes logo" className="w-28 mb-4" />
                     <p className="text-sm text-gray-400 ml-6 lg:ml-0">
                         {t(`footer.subtitle`)}
                     </p>
@@ -33,9 +33,8 @@ export default function Footer() {
                     <h3 className="text-lg font-semibold mb-4">{t(`footer.menu`)}</h3>
                     <ul className="flex flex-col items-center space-y-2 text-gray-300">
                         {navLinks.map((link) => (
-                            <li>
+                            <li key={link.to}>
                                 <Link
-                                    key={link.to}
                                     to={link.to}
                                     smooth={true}
                                     duration={500}
@@ -45,10 +44,7 @@ export default function Footer() {
                                 </Link>
                             </li>
                         ))}
-                        {/* <li><Link to="rooms" smooth duration={500} className="cursor-pointer hover:text-white">Odalar</Link></li>
-                        <li><Link to="reservation" smooth duration={500} className="cursor-pointer hover:text-white">Rezervasyon</Link></li>
-                        <li><Link to="faq" smooth duration={500} className="cursor-pointer hover:text-white">SSS</Link></li>
-                        <li><Link to="contact" smooth duration={500} className="cursor-pointer hover:text-white">İletişim</Link></li> */}
+                        
                     </ul>
                 </div>
 

@@ -90,11 +90,12 @@
             },
             {
                 "question": "What are the check-in and check-out times?",
-                "answer": "Check-in is at 14:00, and check-out is at 12:00."
+                "answer": "Check-in is at 15:00-22:00, and check-out is at 10:00."
             },
             {
                 "question": "What are the available payment options?",
-                "answer": "We accept payments in cash and via bank transfer. Please contact us for bank details or further assistance."
+                "answer": "We accept payments in cash, via bank transfer, and by credit card. Please contact us for bank details or further assistance."
+
             }
         ]
     },
