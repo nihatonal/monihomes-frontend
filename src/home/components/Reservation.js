@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React, { useState, useMemo, useEffect, useReducer } from "react";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 import Calendar from "react-calendar";
@@ -10,9 +10,12 @@ import axios from "axios";
 import PulseLoader from "react-spinners/PulseLoader";
 import { useGoogleLogin } from "@react-oauth/google";
 import { FaAirbnb, FaGoogle } from "react-icons/fa";
+
+import "moment/locale/tr";
+
 import "./CalendarStyles.css";
 const Reservation = () => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedDates, setSelectedDates] = useState([]);
@@ -43,6 +46,12 @@ const Reservation = () => {
         events: [],
         reservedDates: [],
     };
+
+    useEffect(() => {
+        // i18next dilini güncelle
+        moment.locale(i18n.language); // Moment dilini de güncelle
+    }, [i18n.language]); // i18next dil değiştiğinde çalışacak
+
     // Reducer Fonksiyonu
     const formReducer = (state, action) => {
         switch (action.type) {
@@ -74,6 +83,48 @@ const Reservation = () => {
     const [state, dispatch] = useReducer(formReducer, initialState);
     const [errorMessage, setErrorMessage] = useState("");
     const [showFormError, setShowFormError] = useState(false);
+    const [prices, setPrices] = useState([])
+
+    //Fiyatlarin mongodb de cekilmesi
+    useEffect(() => {
+        const fetchPrices = async () => {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/prices`);
+            const data = await res.json();
+            console.log(data)
+            setPrices(data); // useState ile saklanacak
+        };
+
+        fetchPrices();
+    }, []);
+
+    //Fiyatları tek tek tarihlere eşle
+    const priceMap = useMemo(() => {
+        const map = {};
+        prices.forEach(({ startDate, endDate, price }) => {
+            let current = new Date(startDate);
+            const end = new Date(endDate);
+            while (current <= end) {
+                const key = current.toISOString().split('T')[0];
+                map[key] = price;
+                current.setDate(current.getDate() + 1);
+            }
+        });
+        return map;
+    }, [prices]);
+    //Takvime fiyat ekleme
+    const tileContent = ({ date, view }) => {
+        if (view === 'month') {
+            const dateKey = date.toISOString().split('T')[0];
+            const today = new Date();
+            const isPast = date < new Date(today.setHours(0, 0, 0, 0));
+            const price = priceMap[dateKey];
+
+            return !isPast && price ? (
+                <div className="text-[10px] text-green-600 font-medium mt-1">€ {price}</div>
+            ) : null;
+        }
+    };
+
 
     // Google Calendar'dan dolu tarihleri alacak API çağrısı
     //get events
@@ -224,7 +275,7 @@ const Reservation = () => {
 
         setSelectedRange(range);
         setShowFormError(false);
-  
+
         state.formValues.checkIn = moment(new Date(start)).format("YYYY-MM-DD")
         state.formValues.checkOut = moment(new Date(end)).format("YYYY-MM-DD")
         // Seçilen aralığın dolu olup olmadığını kontrol et
@@ -348,7 +399,7 @@ const Reservation = () => {
 
             const userInfo = await res.json();
             dispatch({ type: 'SET_FORM_STEP', payload: 1 });
-           
+
             state.formValues.name = userInfo.name
             state.formValues.email = userInfo.email
         },
@@ -400,7 +451,7 @@ const Reservation = () => {
                             <p className="text-gray-600 mb-6">{t("reservation.question")}</p>
                             <div className="flex flex-col justify-center gap-4">
                                 <button
-                                    onClick={() => window.open("https://www.airbnb.com", "_blank")}
+                                    onClick={() => window.open("https://tr.airbnb.com/rooms/910566787600271265?check_in=2025-04-22&check_out=2025-04-26&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80", "_blank")}
                                     className="w-full flex items-center justify-center sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
                                 >
                                     <FaAirbnb className="font-bold mr-1" />{t("reservation.airbnb")}
@@ -451,6 +502,8 @@ const Reservation = () => {
                                     showNeighboringMonth={false}
                                     showFixedNumberOfWeeks={false}
                                     allowPartialRange={false}
+                                    locale={i18n.language}
+                                    tileContent={tileContent}
                                     tileClassName={({ date }) => {
                                         //passed days
                                         if (
@@ -736,12 +789,14 @@ const Reservation = () => {
                         <Calendar
                             onChange={handleDateChange}
                             value={selectedDates}
+                            locale={i18n.language}
                             selectRange={true}
                             showDoubleView={windowSize.innerWidth > 786 ? true : false}
                             showNavigation={true}
                             showNeighboringMonth={false}
                             showFixedNumberOfWeeks={false}
                             allowPartialRange={false}
+                            tileContent={tileContent}
                             tileClassName={({ date }) => {
                                 //passed days
                                 if (

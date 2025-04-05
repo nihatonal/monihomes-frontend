@@ -5,11 +5,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Autoplay } from "swiper/modules";
-import i18n from '../../i18n';
+import "moment/locale/tr";
 import { useTranslation } from "react-i18next";
 import moment from 'moment';
 
-import localeTr from 'moment/locale/tr'
 import './Reviews.css'
 const reviews_airbnb = [
     {
@@ -46,12 +45,18 @@ const reviews_airbnb = [
 //  const { author_name, rating, text } = review;
 
 export default function GuestReviews() {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const [googleReviews, setGoogleReviews] = useState([]);
     const [allReviews, setAllReviews] = useState([]);
     const [isMobile, setIsMobile] = useState(false);
-    const [lang, setLang] = useState('en');
-    // console.log(i18n.language)
+
+
+    useEffect(() => {
+        // i18next dilini güncelle
+        moment.locale(i18n.language); // Moment dilini de güncelle
+    }, [i18n.language]); // i18next dil değiştiğinde çalışacak
+
+
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
         handleResize();
@@ -95,7 +100,13 @@ export default function GuestReviews() {
     useEffect(() => {
         setAllReviews([...googleReviews, ...reviews_airbnb].sort((a, b) => a.time - b.time));
     }, [googleReviews]);
-    moment.locale(lang, [localeTr]);
+    // // Before (deprecated)
+    // moment.defineLocale('en', config);
+
+    // // After (recommended)
+    // moment.updateLocale('en', config);
+
+    //moment.locale(lang, [localeTr]);
 
     const getDate = (date) => {
         return moment(new Date(date)).format("MMMM, YYYY")
@@ -113,7 +124,7 @@ export default function GuestReviews() {
             >
                 <p className="text-gray-600 italic flex-grow">{text}</p>
                 <div className="mt-4 flex justify-between items-center">
-                    <h4 className="font-semibold text-lg">{author_name}</h4>
+                    <h3 className="font-semibold text-lg">{author_name}</h3>
                     <span className="text-yellow-500">⭐ {rating}</span>
                 </div>
                 <p className="text-sm text-gray-400">{source} / {getDate(time * 1000)}</p>
@@ -144,6 +155,8 @@ export default function GuestReviews() {
                         loop={true} // Sonsuz döngüde devam eder
                         spaceBetween={10}
                         slidesPerView={1}
+                        slidesPerGroup={1} // Number of slides to move per group
+                        loopAdditionalSlides={3} // Duplicate additional slides to enable proper loop
                         className="w-full">
                         {allReviews.map((review, index) => (
                             <SwiperSlide key={index}>

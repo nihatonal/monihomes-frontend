@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-scroll";
+
 // react-scroll kullanarak sectiona yönlendirme
 import backgroundImage from '../../assets/images/hero_background_otel_odasi.jpg';
 const Hero = () => {
@@ -42,11 +42,11 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <Link to="reservation" smooth={true} duration={500} aria-label="reservasyon yapma">
+                    <a to="reservation" href="#reservation" aria-label="reservasyon yapma">
                         <button className="relative z-90 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg">
                             {t("hero.cta")}
                         </button>
-                    </Link>
+                    </a>
                 </motion.div>
             </div>
         </section>

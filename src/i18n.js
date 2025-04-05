@@ -1,4 +1,5 @@
 import i18n from "i18next";
+import moment from "moment";
 import { initReactI18next } from "react-i18next";
 
 i18n
@@ -16,10 +17,15 @@ i18n
       }
     },
     lng: "tr", // Varsayılan dil
-    fallbackLng: "tr",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false
     }
   });
+
+// Moment dil ayarlarını i18next'e göre güncelle
+i18n.on('languageChanged', (lng) => {
+  moment.locale(lng); // Dil değiştiğinde moment'in locale'ini güncelle
+});
 
 export default i18n;

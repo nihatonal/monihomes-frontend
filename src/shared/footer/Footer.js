@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { FaInstagram, FaFacebook, FaVk } from "react-icons/fa";
-import { Link } from "react-scroll"; // kendi logonu burada kullan
+
 import logo from '../../assets/images/logo_footer.png';
 export default function Footer() {
     const { t } = useTranslation();
@@ -34,17 +34,17 @@ export default function Footer() {
                     <ul className="flex flex-col items-center space-y-2 text-gray-300">
                         {navLinks.map((link) => (
                             <li key={link.to}>
-                                <Link
-                                    to={link.to}
-                                    smooth={true}
-                                    duration={500}
+                                <a
+                                    key={link.to}
+                                    href={`#${link.to}`}
+                                    aria-label={link.to}
                                     className="cursor-pointer hover:text-white"
                                 >
                                     {t(`nav.${link.name}`)}
-                                </Link>
+                                </a>
                             </li>
                         ))}
-                        
+
                     </ul>
                 </div>
 
@@ -52,13 +52,19 @@ export default function Footer() {
                 <div className="flex flex-col items-center sm:items-end">
                     <h3 className="text-lg font-semibold mb-4">{t(`footer.socials`)}</h3>
                     <div className="flex space-x-4 text-2xl text-gray-300">
-                        <a href="https://instagram.com/monihomesfethiye?igshid=MzNlNGNkZWQ4Mg==" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                        <a href="https://instagram.com/monihomesfethiye?igshid=MzNlNGNkZWQ4Mg=="
+                            aria-label="Instagram"
+                            target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                             <FaInstagram />
                         </a>
-                        <a href="https://vk.com/dincugr" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                        <a href="https://vk.com/dincugr"
+                            aria-label="VK contact"
+                            target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                             <FaVk />
                         </a>
-                        <a href="https://www.facebook.com/ugurdinc09/?mibextid=ZbWKwL" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                        <a href="https://www.facebook.com/ugurdinc09/?mibextid=ZbWKwL"
+                            aria-label="Facebook"
+                            target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                             <FaFacebook />
                         </a>
                     </div>

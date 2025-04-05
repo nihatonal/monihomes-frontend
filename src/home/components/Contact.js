@@ -81,6 +81,7 @@ export default function Contact() {
                             <a
                                 href="tel:+905308997709"
                                 className="text-blue-500 hover:underline"
+                                aria-label="Call to phone"
                             >
                                 <span className="text-gray-700 font-bold">{t("contact_phone")}</span>: +90 530 899 77 09
                             </a>
@@ -92,6 +93,7 @@ export default function Contact() {
                             <a
                                 href="mailto:monihomes48@gmail.com"
                                 className="text-blue-500 hover:underline"
+                                aria-label="Send mail"
                             >
                                 <span className="text-gray-700 font-bold">{t("contact_email")}</span>: monihomes48@gmail.com
                             </a>
@@ -104,6 +106,7 @@ export default function Contact() {
                                 href="https://www.google.com/maps?q=Cumhuriyet,+93.+Sok+No:+4C,+48300+Fethiye/Muğla,+Türkiye"
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                aria-label="contact address"
                                 className="text-blue-500 hover:underline"
                             >
                                 <span className="text-gray-700 font-bold">{t("contact_address")}</span>: Cumhuriyet, 93. Sok No: 4C, 48300 Fethiye/Muğla, Türkiye
@@ -116,24 +119,28 @@ export default function Contact() {
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.6 }}
                                 viewport={{ once: true }}
+                                aria-label="instagram"
                                 href="https://instagram.com/monihomesfethiye?igshid=MzNlNGNkZWQ4Mg==" rel="noreferrer" target='_blank' className="text-2xl"><FaInstagram className="text-[#E4405F] text-3xl transition-colors duration-300 hover:text-[#C13584]" /></motion.a>
                             <motion.a
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 0.8 }}
                                 viewport={{ once: true }}
+                                aria-label="facebook"
                                 href="https://www.facebook.com/ugurdinc09/?mibextid=ZbWKwL" rel="noreferrer" target='_blank' className="text-2xl"><FaFacebook className="text-[#1877F2] text-3xl transition-colors duration-300 hover:text-[#0e5abf]" /></motion.a>
                             <motion.a
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 1 }}
                                 viewport={{ once: true }}
+                                aria-label="vk contact"
                                 href="https://vk.com/dincugr" rel="noreferrer" target='_blank' className="text-2xl"><FaVk className="text-[#0077FF] text-3xl transition-colors duration-300 hover:text-[#0057b3]" /></motion.a>
                             <motion.a
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 1.2 }}
                                 viewport={{ once: true }}
+                                aria-label="airbnb"
                                 href="https://tr.airbnb.com/rooms/910566787600271265?check_in=2025-04-22&check_out=2025-04-26&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80" rel="noreferrer" target='_blank' className="text-2xl"><FaAirbnb className="text-[#FF5A5F] text-3xl transition-colors duration-300 hover:text-[#E0484E]" /></motion.a>
                         </div>
                     </div>

@@ -11,4 +11,6 @@
   height: auto;
   overflow: visible;
 }
-
+html {
+  scroll-behavior: smooth;
+}

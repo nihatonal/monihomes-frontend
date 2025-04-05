@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import coast from '../../assets/images/fethiye-yürüyüş-kordon-sahil-yolu.jpg';
 import paspatur from '../../assets/images/Fethiye-paspatur-çarşısı.webp';
 import fish_restaurant from '../../assets/images/fethiye-balık-hali.jpg'
-import { Link } from "react-scroll";
+
 
 import './Banner.css'
 function FethiyeBanner(props) {
@@ -28,20 +28,19 @@ function FethiyeBanner(props) {
                     <p className="mt-4 text-lg text-gray-700">
                         {t("fethiye.description")}
                     </p>
-                    <Link to="reservation"
+                    <a to="reservation"
                         className="mt-6 inline-block bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
-                        smooth={true}
-                        duration={500}
+                        href='#reservation'
                         aria-label="reservasyon yapma"
-                        >
+                    >
                         {t("fethiye.button")}
 
-                    </Link>
+                    </a>
 
                 </motion.div>
 
                 {/* Image Collage */}
-                <div className="lg:w-1/2 hidden md:block md:h-[320px] lg:h-auto flex justify-center relative w-full">
+                <div className="lg:w-1/2 hidden lg:block md:h-[320px] lg:h-auto flex justify-center relative w-full">
                     <motion.img
                         src={paspatur}
                         alt="Fethiye Paspatur Çarşısı"
@@ -56,7 +55,7 @@ function FethiyeBanner(props) {
                         src={coast}
                         alt="Fethiye Kordon Sahili"
                         className="w-60 md:w-80 rounded-lg shadow-gray-400 shadow-lg absolute 
-                        top-20 md:top-16 z-10 hidden md:block lg:top-16  md:right-60 lg:right-0"
+                        top-20 md:top-16 z-10 hidden md:block lg:top-16  md:right-80 lg:right-0"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
@@ -78,12 +77,14 @@ function FethiyeBanner(props) {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className=" md:hidden lg:w-1/2 md:h-[320px] lg:h-auto flex justify-center relative w-full">
+                    className=" lg:hidden lg:w-1/2 md:h-[320px] lg:h-auto flex justify-center relative w-full">
                     <Swiper modules={[Autoplay]}
                         autoplay={{ delay: 3000, disableOnInteraction: false }} // 3 saniyede bir değişir
                         loop={true} // Sonsuz döngüde devam eder
                         spaceBetween={10}
-                        slidesPerView={1}
+                        slidesPerView={1} // Number of slides to show per view
+                        slidesPerGroup={1} // Space between slides
+                        loopAdditionalSlides={1} // Duplicate additional slides to enable proper loop
                         className="shadow-xl">
                         <SwiperSlide>
                             <img

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
-import { Link } from "react-scroll";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, Wifi, Snowflake, WashingMachine, MapPin, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -64,14 +64,13 @@ const RoomsSection = () => {
                         </li>
                     </ul>
 
-                    <Link to="reservation"
+                    <a
                         className="px-6 py-3 mt-10 ml-auto bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
-                        smooth={true}
-                        duration={500}
-                        aria-label="Rezervasyon yapma"
-                        >
+                        href="#reservation"
+                        aria-label="Rezervasyon"
+                    >
                         {t("rooms.cta")}
-                    </Link>
+                    </a>
 
 
                 </motion.div>

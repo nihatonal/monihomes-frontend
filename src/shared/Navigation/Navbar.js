@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-scroll";
 import { Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logo from '../../assets/images/logo_footer.png'
@@ -59,39 +58,36 @@ const Navbar = () => {
                     transition={{ duration: 0.5 }}
                     className="text-white text-2xl font-bold"
                 >
-                    <Link
-                        to={"home"}
-                        smooth={true}
-                        duration={500}
-                        aria-label="Ana sayfa"
+                    <a
+                        href="#home"
+                        aria-label="Ana sayfaya gider"
                         className="block shadow shadow-stone-800 bg-stone-800 p-2 rounded-full"
                     >
-                        <img src={logo} className='h-[40px] lg:h-[60px]' alt='monihomes-fethiye-logo' />
-                    </Link>
+                        <img src={logo} className='h-[40px] lg:h-[60px]' alt="Monihomes – Fethiye'de konforlu günlük kiralık dairelerin logosu" />
+                    </a>
 
                 </motion.div>
 
                 <div className="hidden md:flex space-x-6">
                     {navLinks.map((link) => (
-                        <Link
+                        <a
                             key={link.to}
-                            to={link.to}
-                            smooth={true}
-                            duration={500}
+                            href={`#${link.to}`}
                             aria-label={link.to}
                             className="text-white cursor-pointer hover:text-yellow-300 transition"
                         >
                             {t(`nav.${link.name}`)}
-                        </Link>
+                        </a>
                     ))}
                 </div>
 
                 <div className="flex items-center space-x-4">
-                    <button onClick={() => changeLanguage("en")} className="text-white hover:text-yellow-300 transition">EN</button>
-                    <button onClick={() => changeLanguage("tr")} className="text-white hover:text-yellow-300 transition">TR</button>
-                    <button onClick={() => changeLanguage("ru")} className="text-white hover:text-yellow-300 transition">RU</button>
+                    <button aria-label="Change language to English" onClick={() => changeLanguage("en")} className="text-white hover:text-yellow-300 transition">EN</button>
+                    <button aria-label="Change language to Turkish" onClick={() => changeLanguage("tr")} className="text-white hover:text-yellow-300 transition">TR</button>
+                    <button aria-label="Change language to Russian" onClick={() => changeLanguage("ru")} className="text-white hover:text-yellow-300 transition">RU</button>
                     <button
                         className="md:hidden text-white"
+                        aria-label="hamburger"
                         onClick={() => setIsOpen(!isOpen)}
                     >
                         <Menu size={28} />
@@ -103,21 +99,22 @@ const Navbar = () => {
                 <motion.div
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }} // çıkış animasyonu
                     transition={{ duration: 0.3 }}
-                    className="md:hidden p-4 space-y-4"
+                    className="md:hidden py-4 pr-10 space-y-4"
                 >
                     {navLinks.map((link) => (
-                        <Link
+                        <a
                             key={link.to}
-                            to={link.to}
-                            smooth={true}
-                            duration={500}
+                            href={`#${link.to}`}
                             aria-label={link.to}
-                            className="block text-white text-lg cursor-pointer hover:text-yellow-300"
-                            onClick={() => setIsOpen(false)}
+                            onClick={() => {
+                                setIsOpen(false)
+                            }}
+                            className="block text-white text-lg text-right cursor-pointer hover:text-yellow-300 transition"
                         >
                             {t(`nav.${link.name}`)}
-                        </Link>
+                        </a>
                     ))}
                 </motion.div>
             )}
