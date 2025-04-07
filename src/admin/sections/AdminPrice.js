@@ -83,13 +83,15 @@ const AdminPrice = () => {
     }, [prices]);
 
     return (
-        <div className="max-w-4xl mx-auto p-6">
-            <h1 className="text-3xl font-semibold text-center mb-6">Fiyat Yönetimi</h1>
-            <div className='flex flex-col md:flex-row justify-between mt-10'>
+        <div className="max-w-6xl mx-auto p-6">
+            <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">Fiyat Yönetimi</h1>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
                 {/* Fiyat Ekleme/Güncelleme Formu */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-xl font-semibold mb-4">{isEditing ? 'Fiyat Güncelle' : 'Yeni Fiyat Ekle'}</h2>
-                    <form className="space-y-4">
+                    <h2 className="text-xl font-semibold mb-4 text-gray-800">{isEditing ? 'Fiyat Güncelle' : 'Yeni Fiyat Ekle'}</h2>
+
+                    <form className="space-y-6">
                         <div>
                             <label htmlFor="startDate" className="block text-sm font-medium text-gray-700">Başlangıç Tarihi</label>
                             <input
@@ -97,7 +99,7 @@ const AdminPrice = () => {
                                 id="startDate"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -108,7 +110,7 @@ const AdminPrice = () => {
                                 id="endDate"
                                 value={endDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
@@ -119,23 +121,24 @@ const AdminPrice = () => {
                                 id="price"
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
-                                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                className="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
 
-                        <div className="flex justify-between items-center">
+                        <div className="flex flex-col sm:flex-row justify-between items-center">
                             <button
                                 type="button"
                                 onClick={isEditing ? handleUpdatePrice : handleAddPrice}
-                                className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                className="w-full sm:w-auto px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300"
                             >
                                 {isEditing ? 'Güncelle' : 'Ekle'}
                             </button>
+
                             {isEditing && (
                                 <button
                                     type="button"
                                     onClick={resetForm}
-                                    className="px-6 py-2 bg-gray-300 text-black rounded-md hover:bg-gray-400"
+                                    className="w-full sm:w-auto mt-4 sm:mt-0 px-6 py-3 bg-gray-300 text-black rounded-md hover:bg-gray-400 transition duration-300"
                                 >
                                     İptal
                                 </button>
@@ -145,44 +148,49 @@ const AdminPrice = () => {
                 </div>
 
                 {/* Fiyat Listesi */}
-                <div className="mt-8 md:mt-0 bg-white p-6 rounded-lg shadow-md">
-                    <h2 className="text-xl font-semibold mb-4">Fiyat Listesi</h2>
-                    <table className="min-w-full table-auto">
-                        <thead>
-                            <tr className="text-left border-b">
-                                <th className="px-4 py-2">Başlangıç Tarihi</th>
-                                <th className="px-4 py-2">Bitiş Tarihi</th>
-                                <th className="px-4 py-2">Fiyat</th>
-                                <th className="px-4 py-2">Aksiyonlar</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {prices.map((price) => (
-                                <tr key={price._id} className="border-b">
-                                    <td className="px-4 py-2">{new Date(price.startDate).toLocaleDateString()}</td>
-                                    <td className="px-4 py-2">{new Date(price.endDate).toLocaleDateString()}</td>
-                                    <td className="px-4 py-2">€ {price.price}</td>
-                                    <td className="px-4 py-2">
-                                        <button
-                                            onClick={() => handleEdit(price)}
-                                            className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 mr-2"
-                                        >
-                                            Düzenle
-                                        </button>
-                                        <button
-                                            onClick={() => handleDeletePrice(price._id)}
-                                            className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
-                                        >
-                                            Sil
-                                        </button>
-                                    </td>
+                <div className="bg-white p-6 rounded-lg shadow-md">
+                    <h2 className="text-xl font-semibold mb-4 text-gray-800">Fiyat Listesi</h2>
+
+                    <div className="overflow-x-auto">
+                        <table className="min-w-full table-auto">
+                            <thead>
+                                <tr className="text-left border-b">
+                                    <th className="px-4 py-3 text-sm font-medium text-gray-600">Başlangıç Tarihi</th>
+                                    <th className="px-4 py-3 text-sm font-medium text-gray-600">Bitiş Tarihi</th>
+                                    <th className="px-4 py-3 text-sm font-medium text-gray-600">Fiyat</th>
+                                    <th className="px-4 py-3 text-sm font-medium text-gray-600">Aksiyonlar</th>
                                 </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                {prices.map((price) => (
+                                    <tr key={price._id} className="border-b">
+                                        <td className="px-4 py-3 text-sm">{new Date(price.startDate).toLocaleDateString()}</td>
+                                        <td className="px-4 py-3 text-sm">{new Date(price.endDate).toLocaleDateString()}</td>
+                                        <td className="px-4 py-3 text-sm">€ {price.price}</td>
+                                        <td className="px-4 py-3 text-sm flex gap-2">
+                                            <button
+                                                onClick={() => handleEdit(price)}
+                                                className="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition duration-300"
+                                            >
+                                                Düzenle
+                                            </button>
+                                            <button
+                                                onClick={() => handleDeletePrice(price._id)}
+                                                className="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300"
+                                            >
+                                                Sil
+                                            </button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+
     );
 };
 

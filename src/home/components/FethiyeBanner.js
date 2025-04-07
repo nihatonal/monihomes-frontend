@@ -11,6 +11,14 @@ import fish_restaurant from '../../assets/images/fethiye-balık-hali.jpg'
 import './Banner.css'
 function FethiyeBanner(props) {
     const { t } = useTranslation();
+    const handleScrollToReservation = () => {
+        const element = document.getElementById("reservation");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            // URL'deki hash (#reservation) kısmını temizle
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
     return (
         <section className="relative py-6 lg:py-24 px-6 lg:px-20 shadow-lg">
             <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
@@ -28,14 +36,14 @@ function FethiyeBanner(props) {
                     <p className="mt-4 text-lg text-gray-700">
                         {t("fethiye.description")}
                     </p>
-                    <a to="reservation"
+                    <button
                         className="mt-6 inline-block bg-blue-600 text-white text-lg font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
-                        href='#reservation'
+                        onClick={handleScrollToReservation}
                         aria-label="reservasyon yapma"
                     >
                         {t("fethiye.button")}
 
-                    </a>
+                    </button>
 
                 </motion.div>
 
@@ -45,7 +53,7 @@ function FethiyeBanner(props) {
                         src={paspatur}
                         alt="Fethiye Paspatur Çarşısı"
                         className="w-full md:w-72 rounded-lg shadow-gray-400 shadow-lg md:absolute 
-                        lg:top-[-60px] left-[0] md:left-20 lg:left-0"
+                        lg:top-[-120px] left-[0] md:left-20 lg:left-0"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
@@ -55,7 +63,7 @@ function FethiyeBanner(props) {
                         src={coast}
                         alt="Fethiye Kordon Sahili"
                         className="w-60 md:w-80 rounded-lg shadow-gray-400 shadow-lg absolute 
-                        top-20 md:top-16 z-10 hidden md:block lg:top-16  md:right-80 lg:right-0"
+                      lg:top-[25px] z-10 hidden md:block lg:top-16  md:right-80 lg:right-0"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
@@ -65,7 +73,7 @@ function FethiyeBanner(props) {
                         src={fish_restaurant}
                         alt="Fethiye balık hali ve restoranları"
                         className="w-72 rounded-lg hidden md:block shadow-gray-400 shadow-lg absolute 
-                        bottom-[36px] right-6 lg:left-26"
+                        bottom-[36px] right-6 lg:right-[-60px]"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}

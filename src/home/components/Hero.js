@@ -5,7 +5,14 @@ import { useTranslation } from "react-i18next";
 import backgroundImage from '../../assets/images/hero_background_otel_odasi.jpg';
 const Hero = () => {
     const { t } = useTranslation();
-
+    const handleScrollToReservation = () => {
+        const element = document.getElementById("reservation");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            // URL'deki hash (#reservation) kısmını temizle
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
     return (
         <section id="home" className="relative w-full h-screen bg-white ">
             <div
@@ -42,14 +49,14 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <a to="reservation" href="#reservation" aria-label="reservasyon yapma">
-                        <button className="relative z-90 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg">
-                            {t("hero.cta")}
-                        </button>
-                    </a>
+
+                    <button onClick={handleScrollToReservation} aria-label="reservasyon yapma" className="relative z-90 bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-lg">
+                        {t("hero.cta")}
+                    </button>
+
                 </motion.div>
             </div>
-        </section>
+        </section >
 
     );
 };

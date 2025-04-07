@@ -90,7 +90,7 @@ const Reservation = () => {
         const fetchPrices = async () => {
             const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/prices`);
             const data = await res.json();
-            console.log(data)
+
             setPrices(data); // useState ile saklanacak
         };
 
@@ -125,9 +125,6 @@ const Reservation = () => {
         }
     };
 
-
-    // Google Calendar'dan dolu tarihleri alacak API çağrısı
-    //get events
     useEffect(() => {
         const fetchEvents = async () => {
             const cache = localStorage.getItem('eventsCache');
@@ -136,15 +133,16 @@ const Reservation = () => {
 
             if (cache && Date.now() - cacheTimestamp < cacheDuration) {
                 setEvents(JSON.parse(cache));
-
                 return;
             }
 
             try {
                 await gapi.load("client", async () => {
                     await gapi.client.init({ apiKey });
+                    const now = new Date(2000, 0, 1).toISOString(); // geçmişten itibaren
+
                     const response = await gapi.client.request({
-                        path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events`,
+                        path: `https://www.googleapis.com/calendar/v3/calendars/${calendarID}/events?key=${apiKey}&timeMin=${now}&singleEvents=true&orderBy=startTime&maxResults=500`,
                     });
 
                     const events = response.result.items;
@@ -451,7 +449,7 @@ const Reservation = () => {
                             <p className="text-gray-600 mb-6">{t("reservation.question")}</p>
                             <div className="flex flex-col justify-center gap-4">
                                 <button
-                                    onClick={() => window.open("https://tr.airbnb.com/rooms/910566787600271265?check_in=2025-04-22&check_out=2025-04-26&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80", "_blank")}
+                                    onClick={() => window.open(`https://tr.airbnb.com/rooms/910566787600271265?check_in=${state.formValues.checkIn}&check_out=${state.formValues.checkOut}&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80`, "_blank")}
                                     className="w-full flex items-center justify-center sm:w-auto bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-6 rounded-lg transition duration-300"
                                 >
                                     <FaAirbnb className="font-bold mr-1" />{t("reservation.airbnb")}
@@ -529,15 +527,15 @@ const Reservation = () => {
                                         }
                                         //reserved days
                                         if (check_in.filter((d) => !check_out.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 bg-[linear-gradient(-45deg,#fb2c36_0%,#fb2c36_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                            return "inset-0 text-gray-500 bg-[linear-gradient(-45deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
                                         }
 
                                         if (check_out.filter((d) => !check_in.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 bg-[linear-gradient(-225deg,#fb2c36_0%,#fb2c36_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                            return "inset-0 text-gray-500 bg-[linear-gradient(-225deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
                                         }
 
                                         if (reserved.concat(check_out.filter((d) => check_in.includes(d))).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 bg-[linear-gradient(0,#fb2c36_0%,#fb2c36_100%,#fff_100%,#fff_100%)] pointer-events-none"
+                                            return "inset-0 text-gray-500 bg-[linear-gradient(0,#a6a6a6_0%,#a6a6a6_100%,#fff_100%,#fff_100%)] pointer-events-none"
                                         }
 
 
@@ -822,15 +820,15 @@ const Reservation = () => {
                                 }
                                 //reserved days
                                 if (check_in.filter((d) => !check_out.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 bg-[linear-gradient(-45deg,#fb2c36_0%,#fb2c36_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                    return "inset-0 text-gray-500 bg-[linear-gradient(-45deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
                                 }
 
                                 if (check_out.filter((d) => !check_in.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 bg-[linear-gradient(-225deg,#fb2c36_0%,#fb2c36_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                    return "inset-0 text-gray-500 bg-[linear-gradient(-225deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
                                 }
 
                                 if (reserved.concat(check_out.filter((d) => check_in.includes(d))).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 bg-[linear-gradient(0,#fb2c36_0%,#fb2c36_100%,#fff_100%,#fff_100%)] pointer-events-none"
+                                    return "inset-0 text-gray-500 bg-[linear-gradient(0,#a6a6a6_0%,#a6a6a6_100%,#fff_100%,#fff_100%)] pointer-events-none"
                                 }
 
 

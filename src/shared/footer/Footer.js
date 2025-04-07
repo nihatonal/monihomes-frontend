@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FaInstagram, FaFacebook, FaVk } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaAirbnb, FaTiktok } from "react-icons/fa";
 
 import logo from '../../assets/images/logo_footer.png';
 export default function Footer() {
@@ -12,6 +12,15 @@ export default function Footer() {
         { name: "reservation", to: "reservation" },
         { name: "contact", to: "contact" },
     ];
+
+    const handleScrollToReservation = (to) => {
+        const element = document.getElementById(to);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            // URL'deki hash (#reservation) kısmını temizle
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
     return (
         <motion.footer
             initial={{ opacity: 0, y: 50 }}
@@ -34,14 +43,14 @@ export default function Footer() {
                     <ul className="flex flex-col items-center space-y-2 text-gray-300">
                         {navLinks.map((link) => (
                             <li key={link.to}>
-                                <a
+                                <button
                                     key={link.to}
-                                    href={`#${link.to}`}
+                                    onClick={() => handleScrollToReservation(link.to)}
                                     aria-label={link.to}
                                     className="cursor-pointer hover:text-white"
                                 >
                                     {t(`nav.${link.name}`)}
-                                </a>
+                                </button>
                             </li>
                         ))}
 
@@ -57,15 +66,24 @@ export default function Footer() {
                             target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                             <FaInstagram />
                         </a>
-                        <a href="https://vk.com/dincugr"
-                            aria-label="VK contact"
-                            target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
-                            <FaVk />
+                        <a
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 1.2 }}
+                            viewport={{ once: true }}
+                            aria-label="airbnb"
+                            href="https://tr.airbnb.com/rooms/910566787600271265?check_in=&check_out=&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80" rel="noreferrer" target='_blank' className="text-2xl">
+                            <FaAirbnb className="hover:text-white transition" />
                         </a>
                         <a href="https://www.facebook.com/ugurdinc09/?mibextid=ZbWKwL"
                             aria-label="Facebook"
                             target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
                             <FaFacebook />
+                        </a>
+                        <a href="https://www.tiktok.com/@monihomesfethiye?_t=ZS-8vJViveM0Bw&_r=1"
+                            aria-label="Tiktok"
+                            target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+                            <FaTiktok />
                         </a>
                     </div>
                 </div>

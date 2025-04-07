@@ -1,12 +1,13 @@
 import { useState } from "react";
-
+import PulseLoader from "react-spinners/PulseLoader";
 const AdminLogin = ({ onLogin }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        setLoading(true)
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/admin/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -18,6 +19,7 @@ const AdminLogin = ({ onLogin }) => {
         if (response.ok) {
             localStorage.setItem("token", data.token); // Token’ı sakla
             onLogin(); // Ana sayfaya yönlendirme veya state güncelleme
+            setLoading(false)
         } else {
             alert(data.message || "Giriş başarısız!");
         }
@@ -53,7 +55,7 @@ const AdminLogin = ({ onLogin }) => {
                     <button
                         type="submit"
                         className="w-full bg-teal-500 text-white py-3 rounded-lg hover:bg-teal-600 transition font-semibold">
-                        Giriş Yap
+                        {loading ? <PulseLoader size={8} color={"white"} /> : "Giriş Yap"}
                     </button>
                 </form>
             </div>

@@ -27,6 +27,14 @@ const RoomsSection = () => {
         setIsModalOpen(false);
     };
 
+    const handleScrollToReservation = () => {
+        const element = document.getElementById("reservation");
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            // URL'deki hash (#reservation) kısmını temizle
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
     return (
 
         <section id="rooms" className=" bg-white">
@@ -64,13 +72,13 @@ const RoomsSection = () => {
                         </li>
                     </ul>
 
-                    <a
+                    <button
                         className="px-6 py-3 mt-10 ml-auto bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-md hover:bg-blue-700 transition cursor-pointer"
-                        href="#reservation"
+                        onClick={handleScrollToReservation}
                         aria-label="Rezervasyon"
                     >
                         {t("rooms.cta")}
-                    </a>
+                    </button>
 
 
                 </motion.div>

@@ -21,7 +21,14 @@ const Navbar = () => {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
-
+    const handleScrollToReservation = (to) => {
+        const element = document.getElementById(to);
+        if (element) {
+            element.scrollIntoView({ behavior: "smooth" });
+            // URL'deki hash (#reservation) kısmını temizle
+            window.history.replaceState(null, "", window.location.pathname);
+        }
+    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -70,14 +77,15 @@ const Navbar = () => {
 
                 <div className="hidden md:flex space-x-6">
                     {navLinks.map((link) => (
-                        <a
+                        <button
                             key={link.to}
                             href={`#${link.to}`}
-                            aria-label={link.to}
+                            onClick={() => handleScrollToReservation(link.to)}
+                            // aria-label={link.to}
                             className="text-white cursor-pointer hover:text-yellow-300 transition"
                         >
                             {t(`nav.${link.name}`)}
-                        </a>
+                        </button>
                     ))}
                 </div>
 

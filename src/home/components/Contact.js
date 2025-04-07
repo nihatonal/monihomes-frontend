@@ -3,7 +3,7 @@ import axios from "axios";
 import PulseLoader from "react-spinners/PulseLoader";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { FaInstagram, FaFacebook, FaVk, FaAirbnb } from "react-icons/fa";
+import { FaInstagram, FaFacebook, FaAirbnb, FaTiktok } from "react-icons/fa";
 export default function Contact() {
     const { t } = useTranslation();
     const [error, setError] = useState(null);
@@ -134,14 +134,14 @@ export default function Contact() {
                                 transition={{ duration: 0.8, delay: 1 }}
                                 viewport={{ once: true }}
                                 aria-label="vk contact"
-                                href="https://vk.com/dincugr" rel="noreferrer" target='_blank' className="text-2xl"><FaVk className="text-[#0077FF] text-3xl transition-colors duration-300 hover:text-[#0057b3]" /></motion.a>
+                                href="https://www.tiktok.com/@monihomesfethiye?_t=ZS-8vJViveM0Bw&_r=1" rel="noreferrer" target='_blank' className="text-2xl"><FaTiktok className="text-tiktok text-3xl transition-colors duration-300 hover:text-indigo-600" /></motion.a>
                             <motion.a
                                 initial={{ opacity: 0, x: -50 }}
                                 whileInView={{ opacity: 1, x: 0 }}
                                 transition={{ duration: 0.8, delay: 1.2 }}
                                 viewport={{ once: true }}
                                 aria-label="airbnb"
-                                href="https://tr.airbnb.com/rooms/910566787600271265?check_in=2025-04-22&check_out=2025-04-26&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80" rel="noreferrer" target='_blank' className="text-2xl"><FaAirbnb className="text-[#FF5A5F] text-3xl transition-colors duration-300 hover:text-[#E0484E]" /></motion.a>
+                                href="https://tr.airbnb.com/rooms/910566787600271265?check_in=&check_out=&search_mode=regular_search&source_impression_id=p3_1743759994_P3Bojk9bonTKp7Kc&previous_page_section_name=1000&federated_search_id=9478a9ce-60d4-42ba-b4dd-ca7d48de8f80" rel="noreferrer" target='_blank' className="text-2xl"><FaAirbnb className="text-[#FF5A5F] text-3xl transition-colors duration-300 hover:text-[#E0484E]" /></motion.a>
                         </div>
                     </div>
 

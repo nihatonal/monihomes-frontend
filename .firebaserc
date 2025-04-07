@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "monihomes25-d3d5d"
-  }
+    "default": "monihomes25-d3d5d",
+    "default ": "monihomes"
+  },
+  "targets": {},
+  "etags": {}
 }

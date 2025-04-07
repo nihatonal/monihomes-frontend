@@ -68,17 +68,40 @@ export default function GuestReviews() {
         return object;
     }
 
-    useEffect(() => {
-        // Google Reviews API'den verileri çek
-        fetch(`${process.env.REACT_APP_BACKEND_URL}/google_reviews`)
-            .then((res) => res.json())
-            .then((data) => {
-                const result = data.data.result.reviews.map((item) => addProperty(item, "source"))
+    const CACHE_KEY = "googleReviews"; // localStorage anahtar ismi
+    const CACHE_EXPIRATION = 1000 * 60 * 60; // 1 saat
 
-                setGoogleReviews(result)
-            }
-            )
-            .catch((err) => console.error("Yorumları çekerken hata oluştu:", err));
+    const fetchReviews = async () => {
+        try {
+            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/google_reviews`);
+            const data = await res.json();
+            const result = data.data.result.reviews.map((item) => addProperty(item, "source"));
+            return result;
+        } catch (err) {
+            console.error("Yorumları çekerken hata oluştu:", err);
+            return [];
+        }
+    };
+
+    useEffect(() => {
+        // LocalStorage'den cache verisini al
+        const cachedData = JSON.parse(localStorage.getItem(CACHE_KEY));
+        const cachedTime = localStorage.getItem(`${CACHE_KEY}_timestamp`);
+
+        const currentTime = new Date().getTime();
+
+        // Cache'de veri var ve cache süresi geçmemişse, veriyi kullan
+        if (cachedData && cachedTime && currentTime - cachedTime < CACHE_EXPIRATION) {
+            setGoogleReviews(cachedData);
+        } else {
+            // Cache yoksa veya cache süresi geçmişse, veriyi fetch et
+            fetchReviews().then((data) => {
+                setGoogleReviews(data);
+                // Yeni veriyi localStorage'a kaydet
+                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                localStorage.setItem(`${CACHE_KEY}_timestamp`, currentTime.toString());
+            });
+        }
 
         // Ekran boyutuna göre layout değiştirme
         const handleResize = () => setIsMobile(window.innerWidth < 768);
