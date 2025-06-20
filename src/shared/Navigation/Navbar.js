@@ -3,8 +3,11 @@ import { motion } from "framer-motion";
 import { Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import logo from '../../assets/images/logo_footer.png'
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
     const [isOpen, setIsOpen] = useState(false);
     const { t, i18n } = useTranslation();
     const [showNavbar, setShowNavbar] = useState(true);
@@ -21,12 +24,17 @@ const Navbar = () => {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
-    const handleScrollToReservation = (to) => {
-        const element = document.getElementById(to);
-        if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-            // URL'deki hash (#reservation) kısmını temizle
-            window.history.replaceState(null, "", window.location.pathname);
+    const handleScrollToSection = (to) => {
+        if (location.pathname !== "/") {
+            // Farklı sayfadaysa önce ana sayfaya yönlendir, sonra scroll
+            navigate("/", { state: { scrollTo: to } });
+        } else {
+            // Ana sayfadaysa direkt scroll
+            const element = document.getElementById(to);
+            if (element) {
+                element.scrollIntoView({ behavior: "smooth" });
+                window.history.replaceState(null, "", window.location.pathname);
+            }
         }
     };
 
@@ -65,13 +73,13 @@ const Navbar = () => {
                     transition={{ duration: 0.5 }}
                     className="text-white text-2xl font-bold"
                 >
-                    <a
-                        href="#home"
-                        aria-label="Ana sayfaya gider"
+                    <button
+                        onClick={() => handleScrollToSection("home")}
+                        // aria-label="Ana sayfaya gider"
                         className="block shadow shadow-stone-800 bg-stone-800 p-2 rounded-full"
                     >
                         <img src={logo} className='h-[40px] lg:h-[60px]' alt="Monihomes – Fethiye'de konforlu günlük kiralık dairelerin logosu" />
-                    </a>
+                    </button>
 
                 </motion.div>
 
@@ -79,8 +87,7 @@ const Navbar = () => {
                     {navLinks.map((link) => (
                         <button
                             key={link.to}
-                            href={`#${link.to}`}
-                            onClick={() => handleScrollToReservation(link.to)}
+                            onClick={() => handleScrollToSection(link.to)}
                             // aria-label={link.to}
                             className="text-white cursor-pointer hover:text-yellow-300 transition"
                         >
@@ -109,20 +116,20 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }} // çıkış animasyonu
                     transition={{ duration: 0.3 }}
-                    className="md:hidden py-4 pr-10 space-y-4"
+                    className="md:hidden py-4 pr-10 space-y-4 flex flex-col"
                 >
                     {navLinks.map((link) => (
-                        <a
+                        <button
                             key={link.to}
-                            href={`#${link.to}`}
                             aria-label={link.to}
                             onClick={() => {
+                                handleScrollToSection(link.to)
                                 setIsOpen(false)
                             }}
-                            className="block text-white text-lg text-right cursor-pointer hover:text-yellow-300 transition"
+                            className="text-white text-right text-lg cursor-pointer hover:text-yellow-300 transition"
                         >
                             {t(`nav.${link.name}`)}
-                        </a>
+                        </button>
                     ))}
                 </motion.div>
             )}

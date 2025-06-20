@@ -38,6 +38,14 @@ export default function PrivacyPolicy() {
         Kullanıcı bilgilerinin güvenliği bizim için önemlidir. Tüm veriler, güncel güvenlik standartlarına uygun olarak korunur.
       </p>
 
+      <h2 className="text-xl font-semibold mb-2">Veri Saklama ve Silme</h2>
+      <p className="mb-4">
+        Monihomes olarak, Google kullanıcı verilerini yalnızca hizmetlerimizi sunmak için gerekli olduğu sürece saklarız. Bu veriler, kullanım sona erdiğinde ya da kullanıcı tarafından silinmesi talep edildiğinde güvenli bir şekilde sistemlerimizden kaldırılır.
+      </p>
+      <p className="mb-4">
+        Kullanıcılar, verilerinin silinmesini talep etmek için <strong>info@monihomes.com</strong> adresinden bizimle iletişime geçebilir. Talep alındıktan sonra, ilgili veriler 7 iş günü içerisinde silinir ve bu işlem hakkında kullanıcı bilgilendirilir.
+      </p>
+
       <h2 className="text-xl font-semibold mb-2">İletişim</h2>
       <p>
         Gizlilik politikamızla ilgili her türlü soru için bizimle <strong>info@monihomes.com</strong> adresinden iletişime geçebilirsiniz.

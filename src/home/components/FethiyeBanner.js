@@ -49,36 +49,63 @@ function FethiyeBanner(props) {
 
                 {/* Image Collage */}
                 <div className="lg:w-1/2 hidden lg:block md:h-[320px] lg:h-auto flex justify-center relative w-full">
-                    <motion.img
-                        src={paspatur}
-                        alt="Fethiye Paspatur Çarşısı"
+
+                    <motion.div
                         className="w-full md:w-72 rounded-lg shadow-gray-400 shadow-lg md:absolute 
-                        lg:top-[-120px] left-[0] md:left-20 lg:left-0"
+                        lg:top-[-120px] left-[0] md:left-20 lg:left-0 "
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                         viewport={{ once: true }}
-                    />
-                    <motion.img
-                        src={coast}
-                        alt="Fethiye Kordon Sahili"
+                    >
+                        <img
+                            // src={"https://i.ibb.co/SDDqxYJF/Fethiye-paspatur-ar-s.webp"}
+                            src={paspatur}
+                            alt="Fethiye Paspatur Çarşısı"
+                        />
+                        <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                            {t("fethiye.paspatur")} <br />
+                            <span className="text-xs font-medium text-gray-600">1 {t("fethiye.walking_distance")}</span>
+                        </p>
+
+                    </motion.div>
+                    <motion.div
                         className="w-60 md:w-80 rounded-lg shadow-gray-400 shadow-lg absolute 
-                      lg:top-[25px] z-10 hidden md:block lg:top-16  md:right-80 lg:right-0"
+                    lg:top-[25px] z-10 hidden md:block lg:top-16  md:right-80 lg:right-0"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                         viewport={{ once: true }}
-                    />
-                    <motion.img
-                        src={fish_restaurant}
-                        alt="Fethiye balık hali ve restoranları"
+                    >
+                        <img
+                            // src={"https://i.ibb.co/k6vJQjms/fethiye-oludeniz.webp"}
+                            src={coast}
+                            alt="Fethiye Kordon Sahili"
+                        />
+                        <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                            {t("fethiye.coastal")} <br />
+                            <span className="text-xs font-medium text-gray-600">2 {t("fethiye.walking_distance")}</span>
+                        </p>
+                    </motion.div>
+                    <motion.div
                         className="w-72 rounded-lg hidden md:block shadow-gray-400 shadow-lg absolute 
-                        bottom-[36px] right-6 lg:right-[-60px]"
+                    bottom-[32px] right-6 lg:right-[-60px]"
                         initial={{ opacity: 0, y: -30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.6 }}
                         viewport={{ once: true }}
-                    />
+                    >
+                        <img
+                            // src={"https://i.ibb.co/hJgz4gvP/fethiye-bal-k-hali.webp"}
+                            src={fish_restaurant}
+                            alt="Fethiye balık hali ve restoranları"
+
+                        />
+                        <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                            {t("fethiye.fish_restaurants")} <br />
+                            <span className="text-xs font-medium text-gray-600">1 {t("fethiye.walking_distance")}</span>
+                        </p>
+                    </motion.div>
                 </div>
                 <motion.div
                     initial={{ opacity: 0, y: 50 }}
@@ -95,25 +122,44 @@ function FethiyeBanner(props) {
                         loopAdditionalSlides={1} // Duplicate additional slides to enable proper loop
                         className="shadow-xl">
                         <SwiperSlide>
-                            <img
-                                src={paspatur}
-                                alt={`Fethiye Paspatur`}
-                                className="w-full h-full object-cover  cursor-pointer"
-                            />
+                            <div>
+                                <img
+                                    src={paspatur}
+                                    alt={`Fethiye Paspatur`}
+                                    className="w-full h-full object-cover  cursor-pointer"
+                                />
+                                <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                                    {t("fethiye.paspatur")} <br />
+                                    <span className="text-xs font-medium text-gray-600">1 {t("fethiye.walking_distance")}</span>
+                                </p>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img
-                                src={coast}
-                                alt={`Fethiye Sahil kordon yürüyüş yolu`}
-                                className="w-full h-full object-cover cursor-pointer"
-                            />
+                            <div className='grid'>
+                                <img
+                                    src={coast}
+                                    alt={`Fethiye Sahil kordon yürüyüş yolu`}
+                                    className="w-full h-full object-cover cursor-pointer"
+                                />
+                                <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                                    {t("fethiye.coastal")} <br />
+                                    <span className="text-xs font-medium text-gray-600">2 {t("fethiye.walking_distance")}</span>
+                                </p>
+                            </div>
                         </SwiperSlide>
                         <SwiperSlide>
-                            <img
-                                src={fish_restaurant}
-                                alt={`Fethiye balık hali`}
-                                className="w-full h-full object-cover cursor-pointer"
-                            />
+                            <div>
+                                <img
+                                    src={fish_restaurant}
+                                    alt={`Fethiye balık hali`}
+                                    className="w-full h-full object-cover cursor-pointer"
+                                />
+                                <p className="absolute bottom-2 left-2 bg-white/90 px-3 py-1 rounded text-sm font-semibold text-gray-800 shadow-md">
+                                    {t("fethiye.fish_restaurants")} <br />
+                                    <span className="text-xs font-medium text-gray-600">1 {t("fethiye.walking_distance")}</span>
+                                </p>
+                            </div>
+
                         </SwiperSlide>
 
                     </Swiper>

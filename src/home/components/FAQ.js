@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-
+import { useTranslatedPath } from "../../shared/hooks/useTranslatedPath";
+import { NavLink } from "react-router";
 
 export default function FAQ() {
+    const roomPath = useTranslatedPath("roomInstructions");
     const { t } = useTranslation();
     const faqData = t("faq.questions", { returnObjects: true })
     return (
-        <section className="py-16  bg-gray-50 lg:pb-24" id="faq">
+        <section className="py-16 lg:pb-24" id="faq">
             <div className="max-w-4xl mx-auto px-6">
                 <motion.h2
                     initial={{ opacity: 0, y: -30 }}
@@ -19,6 +21,11 @@ export default function FAQ() {
                     {faqData.map((faq, index) => (
                         <FAQItem key={index} delay={index} faq={faq} />
                     ))}
+                    <p className="border-b border-gray-300 py-4 text-lg font-medium text-left">
+                        <NavLink to={roomPath} className="text-blue-600 underline hover:text-blue-800">
+                            {t('roomInstructions.cta')}
+                        </NavLink>
+                    </p>
                 </div>
             </div>
         </section>

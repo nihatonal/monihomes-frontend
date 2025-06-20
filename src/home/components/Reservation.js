@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useReducer } from "react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
 import { motion } from "framer-motion";
 import Calendar from "react-calendar";
 import { gapi } from 'gapi-script'
@@ -14,8 +15,10 @@ import { FaAirbnb, FaGoogle } from "react-icons/fa";
 import "moment/locale/tr";
 
 import "./CalendarStyles.css";
+import { useTranslatedPath } from "../../shared/hooks/useTranslatedPath";
 const Reservation = () => {
     const { t, i18n } = useTranslation();
+    const roomPath = useTranslatedPath("roomInstructions");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedDates, setSelectedDates] = useState([]);
@@ -31,7 +34,7 @@ const Reservation = () => {
         formStep: 0,
         formValues: {
             name: '',
-            guests: 0,
+            guests: 1,
             checkIn: '',
             checkOut: '',
             phone: '',
@@ -88,14 +91,26 @@ const Reservation = () => {
     //Fiyatlarin mongodb de cekilmesi
     useEffect(() => {
         const fetchPrices = async () => {
-            const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/prices`);
-            const data = await res.json();
+            try {
+                const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/prices`);
 
-            setPrices(data); // useState ile saklanacak
+                // Sunucu 200 dışında bir şey dönerse hata fırlat
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const data = await res.json();
+                setPrices(data);
+            } catch (error) {
+                console.error('Fiyat verileri alınamadı:', error);
+                // Hatalı durum için kullanıcıya bilgi göstermek istersen:
+
+            }
         };
 
         fetchPrices();
     }, []);
+
 
     //Fiyatları tek tek tarihlere eşle
     const priceMap = useMemo(() => {
@@ -120,7 +135,7 @@ const Reservation = () => {
             const price = priceMap[dateKey];
 
             return !isPast && price ? (
-                <div className="text-[10px] text-green-600 font-medium mt-1">€ {price}</div>
+                <div className="text-[10px] text-gray-500 font-medium mt-1">€ {price}</div>
             ) : null;
         }
     };
@@ -234,7 +249,7 @@ const Reservation = () => {
     let check_in = markedDates.map((x) => x[0]);
     let check_out = markedDates.map((x) => x[x.length - 1]);
     let reserved = datess.filter(x => !check_in.concat(check_out).includes(x));
-
+    //console.log(check_out.filter((x) => x === selectedDates[0]))
     //insert event 
 
     async function inserisciTurni(token) {
@@ -286,8 +301,8 @@ const Reservation = () => {
 
         let checker = (src, target) => target.some((v) => src.includes(v));
         setSelectedDates(selectedDates)
-
-        if (checker(selectedDates, reservedDates)) {
+        //console.log(selectedDates.slice(1))
+        if (checker(selectedDates.slice(1, -1), reservedDates)) {
             //    alert("Bu tarihlerde rezervasyon olabilir.")
             setErrorMessage(t("reservation.error.date_unavailable"));
             setShowFormError(true);
@@ -490,8 +505,9 @@ const Reservation = () => {
                             transition={{ duration: 0.5 }}
                             className="bg-white p-8 rounded-lg mt-6 ">
 
-                            <div className="mb-4 flex items-center justify-center">
+                            <div className="mb-8 flex items-center justify-center">
                                 <Calendar
+                                    className={'homepage_calendar'}
                                     onChange={handleDateChange}
                                     value={selectedDates}
                                     selectRange={true}
@@ -510,37 +526,51 @@ const Reservation = () => {
                                         ) {
                                             return "text-gray-400 line-through pointer-events-none";
                                         }
-
                                         if (selectedDates[0] === moment(date).format("YYYY/MM/DD")
                                             && !check_in.includes(selectedDates[0])
+                                            && check_out.includes(selectedDates[0])
                                             && !reserved.includes(selectedDates[0])
 
                                         ) {
-                                            return "inset-0 bg-[linear-gradient(-45deg,#51c8c2_0%,#51c8c2_50%,#fff_50%,#fff_100%)]"
+                                            return "selected_check_in_out"
+                                        }
+                                        if (selectedDates[0] === moment(date).format("YYYY/MM/DD")
+                                            && !check_in.includes(selectedDates[0])
+                                            && !check_out.includes(selectedDates[0])
+                                            && !reserved.includes(selectedDates[0])
+
+                                        ) {
+                                            return "selected_check_in"
+                                        }
+                                        if (selectedDates[selectedDates.length - 1] === moment(date).format("YYYY/MM/DD")
+                                            && check_in.includes(selectedDates[selectedDates.length - 1])
+                                            && !reserved.includes(selectedDates[selectedDates.length - 1])
+
+                                        ) {
+                                            return "selected_check_out_in"
                                         }
 
                                         if (selectedDates[selectedDates.length - 1] === moment(date).format("YYYY/MM/DD")
                                             && !reserved.includes(selectedDates[selectedDates.length - 1])
 
                                         ) {
-                                            return "inset-0 bg-[linear-gradient(-225deg,#51c8c2_0%,#51c8c2_50%,#fff_50%,#fff_100%)]"
+                                            return "selected_check_out"
                                         }
                                         //reserved days
                                         if (check_in.filter((d) => !check_out.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 text-gray-500 bg-[linear-gradient(-45deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                            return "reserved_days_checkin"
                                         }
 
                                         if (check_out.filter((d) => !check_in.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 text-gray-500 bg-[linear-gradient(-225deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                            return "reserved_days_checkout"
                                         }
 
                                         if (reserved.concat(check_out.filter((d) => check_in.includes(d))).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "inset-0 text-gray-500 bg-[linear-gradient(0,#a6a6a6_0%,#a6a6a6_100%,#fff_100%,#fff_100%)] pointer-events-none"
+                                            return "reserved_days_"
                                         }
 
-
                                         if (selectedDates.slice(1, -1).filter((d) => !reserved.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                            return "bg-[linear-gradient(0deg,#51c8c2_100%,#51c8c2_100%,#fff_0%,#fff_0%)]";
+                                            return "selected_days";
                                         }
 
 
@@ -736,13 +766,23 @@ const Reservation = () => {
                                 </button>
                                 <button
                                     onClick={handleFormSubmit}
-                                    disabled={state.errors.emailError || state.errors.phoneError}
+                                    disabled={
+                                        !state.formValues.email.trim() ||
+                                        !state.formValues.phone.trim() ||
+                                        state.errors.emailError ||
+                                        state.errors.phoneError
+                                    }
                                     className="w-44 px-6 text-sm flex items-center justify-center lg:text-base py-3 bg-gradient-to-r from-green-500 to-green-700 text-white text-lg font-semibold rounded-lg shadow-md transform transition hover:scale-105 hover:shadow-xl
                                         disabled:bg-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:enabled:bg-green-700"
                                 >
                                     {!loading ? t('reservation.step3.completed') : <PulseLoader size={8} color={"white"} />}
                                 </button>
                             </div>
+                            <p className="text-sm text-gray-600 mt-2">
+                                <NavLink to={roomPath} className="text-blue-600 underline hover:text-blue-800">
+                                    {t('roomInstructions.cta')}
+                                </NavLink>
+                            </p>
                         </motion.div>
                     )}
                     {/* success */}
@@ -781,10 +821,11 @@ const Reservation = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     viewport={{ once: true }}
-                    className="hidden lg:block bg-white p-8 rounded-lg shadow-gray-400 shadow-lg ">
+                    className="hidden lg:block bg-white p-8 pb-0 rounded-lg shadow-gray-400 shadow-lg ">
 
-                    <div className="mb-4 flex items-center justify-center">
+                    <div className="flex items-center justify-center">
                         <Calendar
+                            className={"homepage_calendar"}
                             onChange={handleDateChange}
                             value={selectedDates}
                             locale={i18n.language}
@@ -803,37 +844,52 @@ const Reservation = () => {
                                 ) {
                                     return "text-gray-400 line-through pointer-events-none";
                                 }
-
                                 if (selectedDates[0] === moment(date).format("YYYY/MM/DD")
                                     && !check_in.includes(selectedDates[0])
+                                    && check_out.includes(selectedDates[0])
                                     && !reserved.includes(selectedDates[0])
 
                                 ) {
-                                    return "inset-0 bg-[linear-gradient(-45deg,#51c8c2_0%,#51c8c2_50%,#fff_50%,#fff_100%)]"
+                                    return "selected_check_in_out"
+                                }
+                                if (selectedDates[0] === moment(date).format("YYYY/MM/DD")
+                                    && !check_in.includes(selectedDates[0])
+                                    && !check_out.includes(selectedDates[0])
+                                    && !reserved.includes(selectedDates[0])
+
+                                ) {
+                                    return "selected_check_in"
+                                }
+                                if (selectedDates[selectedDates.length - 1] === moment(date).format("YYYY/MM/DD")
+                                    && check_in.includes(selectedDates[selectedDates.length - 1])
+                                    && !reserved.includes(selectedDates[selectedDates.length - 1])
+
+                                ) {
+                                    return "selected_check_out_in"
                                 }
 
                                 if (selectedDates[selectedDates.length - 1] === moment(date).format("YYYY/MM/DD")
                                     && !reserved.includes(selectedDates[selectedDates.length - 1])
 
                                 ) {
-                                    return "inset-0 bg-[linear-gradient(-225deg,#51c8c2_0%,#51c8c2_50%,#fff_50%,#fff_100%)]"
+                                    return "selected_check_out"
                                 }
                                 //reserved days
                                 if (check_in.filter((d) => !check_out.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 text-gray-500 bg-[linear-gradient(-45deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                    return "reserved_days_checkin"
                                 }
 
                                 if (check_out.filter((d) => !check_in.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 text-gray-500 bg-[linear-gradient(-225deg,#a6a6a6_0%,#a6a6a6_50%,#fff_50%,#fff_100%)] pointer-events-none"
+                                    return "reserved_days_checkout"
                                 }
 
                                 if (reserved.concat(check_out.filter((d) => check_in.includes(d))).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "inset-0 text-gray-500 bg-[linear-gradient(0,#a6a6a6_0%,#a6a6a6_100%,#fff_100%,#fff_100%)] pointer-events-none"
+                                    return "reserved_days_"
                                 }
 
 
                                 if (selectedDates.slice(1, -1).filter((d) => !reserved.includes(d)).find((x) => x === moment(date).format("YYYY/MM/DD"))) {
-                                    return "bg-[linear-gradient(0deg,#51c8c2_100%,#51c8c2_100%,#fff_0%,#fff_0%)]";
+                                    return "selected_days";
                                 }
 
 

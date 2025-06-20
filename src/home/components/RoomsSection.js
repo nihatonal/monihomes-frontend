@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { Home, Wifi, Snowflake, WashingMachine, MapPin, X } from "lucide-react";
+import { Home, Wifi, Snowflake, WashingMachine, MapPin, X, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,7 +13,19 @@ const RoomsSection = () => {
     const [roomImages, setRoomImages] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const rooms_images = [
+        "https://i.ibb.co/HTZF4yJr/room1-4.webp",
+        "https://i.ibb.co/nMyKbPqK/room2-1.webp",
+        "https://i.ibb.co/qYDLDqx5/room2-2.webp",
+        "https://i.ibb.co/mF6xc9Mx/room2-3.webp",
+        "https://i.ibb.co/r2PfSmG6/room2-4.webp",
+        "https://i.ibb.co/cSZ3V4WX/room2-5.webp",
+        "https://i.ibb.co/ymWDKpzV/room2-6.webp",
+        "https://i.ibb.co/RpW3YcGD/room2-7.webp",
+        "https://i.ibb.co/N6qq86b8/room3-2.webp",
+        "https://i.ibb.co/1GGg6Y2W/room3-3.webp"
 
+    ]
     useEffect(() => {
         setRoomImages(sectionsData.monihomes)
     }, []);
@@ -70,6 +82,10 @@ const RoomsSection = () => {
                             <MapPin className="text-blue-600" />
                             <span className="text-gray-700 font-medium">{t("rooms.features.location")}</span>
                         </li>
+                        <li className="flex items-center space-x-3">
+                            <User className="text-blue-600" />
+                            <span className="text-gray-700 font-medium">{t("rooms.features.suitability")}</span>
+                        </li>
                     </ul>
 
                     <button
@@ -91,10 +107,10 @@ const RoomsSection = () => {
                     className="w-full lg:w-3/5 mb:0"
                 >
                     <Swiper modules={[Navigation]} navigation className="h-[300px] rounded-t-lg lg:h-[450px] lg:rounded-lg shadow-xl">
-                        {roomImages.map((image, index) => (
+                        {rooms_images.map((image, index) => (
                             <SwiperSlide key={index}>
                                 <img
-                                    src={image.image}
+                                    src={image}
                                     alt={`Room oda resimleri ${index + 1}`}
                                     className="w-full h-full object-cover rounded-t-lg lg:rounded-lg cursor-pointer"
                                     onClick={() => openModal(index)}

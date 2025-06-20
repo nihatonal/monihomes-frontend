@@ -5,7 +5,8 @@
         "reservation": "Reservation",
         "reviews": "Reviews",
         "location": "Location",
-        "contact": "Contact"
+        "contact": "Contact",
+        "instructions": "Room Instructions"
     },
     "hero": {
         "title": "An Unforgettable Holiday in the Heart of Fethiye",
@@ -56,11 +57,12 @@
         "title": "Comfortable and Modern Rooms",
         "subtitle": "Spacious and modern rooms at Monihomes designed for your comfort.",
         "features": {
-            "apartment": "1+0 Apartment Concept",
+            "apartment": "Our rooms follow the 1+0 studio concept (suitable for 2 adults and 1 child)",
             "ac": "Air Conditioning",
             "wifi": "Free WiFi",
             "laundry": "Washing and Drying Machine",
-            "location": "Great Location in Fethiye Center"
+            "location": "Great Location in Fethiye Center",
+            "suitability": "Suitable for 2 adults and 1 child"
         },
         "cta": "Book Now"
     },
@@ -75,14 +77,18 @@
     "fethiye": {
         "title": "Stay in the Heart of Fethiye!",
         "description": "Enjoy a comfortable and peaceful stay just steps away from the city's most special spots.",
-        "button": "Book Now"
+        "button": "Book Now",
+        "fish_restaurants": "Fish Market",
+        "paspatur": "Paspatur Bazaar",
+        "coastal": "Coastal Walking Path",
+        "walking_distance": "minutes walking distance"
     },
     "faq": {
         "title": "Frequently Asked Questions",
         "questions": [
             {
-                "question": "Is there parking available?",
-                "answer": "Yes, we have a paid parking area."
+                "question": "Is parking available?",
+                "answer": "Yes, paid parking is available. A special discount is offered for Monihomes guests."
             },
             {
                 "question": "Do you accept pets?",
@@ -95,7 +101,10 @@
             {
                 "question": "What are the available payment options?",
                 "answer": "We accept payments in cash, via bank transfer, and by credit card. Please contact us for bank details or further assistance."
-
+            },
+            {
+                "question": "Is breakfast service available?",
+                "answer": "No, we do not provide breakfast service in our apartment."
             }
         ]
     },
@@ -116,6 +125,44 @@
         "menu": "Menu",
         "socials": "Follow Us",
         "subtitle": "Monihomes – A comfortable accommodation experience in Fethiye.",
-        "success": "Your message has been successfully sent! We will contact you soon."
+        "success": "Your message has been successfully sent! We will contact you soon.",
+        "privacyPolicy": "Privacy Policy"
+    },
+    "villaSection": {
+        "title": "Our Private Villas",
+        "cta": "Explore"
+    },
+    "villa1": {
+        "title": "Barkın Villa Fethiye",
+        "description": "With its peaceful location in nature, private pool, and modern design, Barkın Villa Fethiye offers you a serene and comfortable holiday experience."
+    },
+    "villa2": {
+        "title": "Villa Masal Fethiye",
+        "description": "Surrounded by greenery, Villa Masal is the perfect getaway with its tranquil atmosphere, spacious garden, and private pool — ideal for memorable moments with loved ones."
+    },
+    "roomInstructions": {
+        "cta": "Check the room instructions here.",
+        "title": "ROOM INSTRUCTIONS",
+        "subtitle": "For a comfortable stay, please consider the following information.",
+        "closing": "🤗 Thank you for your understanding. Monihomes wishes you a wonderful holiday!",
+        "items": [
+            "Please insert the card attached to the keyring into the power slot upon entry.",
+            "For Wi-Fi, you can scan the QR code located behind the door.",
+            "While using the air conditioner, please keep doors and windows closed.",
+            "Keep the mosquito nets closed to avoid bugs. You can also plug in the mosquito repellent.",
+            "Spare toilet paper is under the bathroom sink.",
+            "The washing and drying machines are in the common area. The drying rack is next to the wardrobe; iron and ironing board are beside the machine.",
+            "Please avoid using the washing machine between 00:00 and 07:00 to not disturb other guests.",
+            "Do not keep the electric contact card in your back pocket after locking the door – it might break when sitting.",
+            "Smoking is strictly prohibited in the rooms.",
+            "Please avoid loud music; the walls between rooms are thin.",
+            "Clean slippers and towels are available in the room. Contact us if anything is missing.",
+            "Please wear slippers in shared areas to avoid bringing dust into the rooms.",
+            "If you are sensitive to scents, you may remove the bathroom fragrances or inform us to do so.",
+            [
+                "Check-in time is between 15:00 – 16:00",
+                "Check-out time is between 10:00 – 11:00."
+            ]
+        ]
     }
 }

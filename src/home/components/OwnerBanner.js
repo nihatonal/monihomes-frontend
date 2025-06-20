@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import owner from '../../assets/images/owner-profile.png'
 export default function OwnerBanner() {
     const { t } = useTranslation();
     return (
@@ -27,7 +28,8 @@ export default function OwnerBanner() {
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8 }}
                         viewport={{ once: true }}
-                       src={"https://i.imgur.com/LSbSjyv.webp"}
+                        //    src={"https://i.ibb.co/fYfrP80v/owner-profile.webp"}
+                        src={owner}
                         alt={t("owner.alt")}
                         className="w-48 h-48 rounded-full object-cover shadow-lg "
                     />

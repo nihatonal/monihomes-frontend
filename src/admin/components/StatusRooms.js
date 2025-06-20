@@ -39,28 +39,20 @@ function StatusRooms({ events }) {
     const renderRoomStatus = (room) => {
         const isReserved = roomStatus[room];
         return isReserved ? (
-            <div className="p-2 text-white rounded-md bg-red-500 text-center">Dolu</div>
+            <div className="px-2 w-14 h-14 flex items-center justify-center rounded-full text-white bg-red-500 text-center">Room {room.charAt(room.length - 1)}</div>
         ) : (
-            <div className="p-2 text-white rounded-md bg-green-500 text-center">Boş</div>
+            <div className="px-2 w-14 h-14 flex items-center justify-center rounded-full  text-white bg-cyan-600 text-center">Room {room.charAt(room.length - 1)}</div>
         );
     };
 
     return (
-        <div>
-            <h4 className="text-gray-800 font-semibold text-lg mb-4">Odaların Durumu - Bugün</h4>
-            <div className='grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6'>
+        <div className='mb-8 pt-4'>
+            <h4 className="text-xl font-semibold text-gray-800 mb-4 ">Bugün - Odalar</h4>
+            <div className='flex gap-4'>
+                {['room1', 'room2', 'room3'].map((room, i) => (
 
+                    <div className="text-[12px] font-bold" key={room+i}>{renderRoomStatus(room)}</div>
 
-                {['room1', 'room2', 'room3'].map((room) => (
-                    <div
-                        key={room}
-                        className="bg-white px-4 py-3 rounded-lg shadow-sm sm:shadow-md sm:px-6 sm:py-6"
-                    >
-                        <h4 className="text-gray-800 font-medium text-base sm:text-lg mb-1 sm:mb-2">
-                            {room.toUpperCase()}
-                        </h4>
-                        <div className="text-sm sm:text-base">{renderRoomStatus(room)}</div>
-                    </div>
                 ))}
             </div>
         </div>

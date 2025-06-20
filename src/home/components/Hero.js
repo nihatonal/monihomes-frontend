@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import hero_bg from "../../assets/images/hero_background_otel_odasi.jpg"
 
-// react-scroll kullanarak sectiona yönlendirme
-import backgroundImage from '../../assets/images/hero_background_otel_odasi.jpg';
 const Hero = () => {
     const { t } = useTranslation();
     const handleScrollToReservation = () => {
@@ -20,7 +19,7 @@ const Hero = () => {
             px-4 lg:px-8 xl:px-16 rounded-b-[350px] rounded-br-[0] 
             before:absolute before:inset-0 before:bg-gradient-to-t before:from-black/60 before:to-transparent before:rounded-b-[350px] before:rounded-br-[0]"
                 style={{
-                    backgroundImage: `url(${backgroundImage})`,
+                    backgroundImage: `url(${hero_bg})`,
                     backgroundSize: "cover", // Resmi ekranın tamamına sığdırır.
                     backgroundPosition: "center", // Resmi ortalar.
                     backgroundRepeat: "no-repeat", // Resmin tekrar etmesini engeller.

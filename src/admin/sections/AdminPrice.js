@@ -83,10 +83,10 @@ const AdminPrice = () => {
     }, [prices]);
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <h1 className="text-3xl font-semibold text-center mb-6 text-gray-800">Fiyat Yönetimi</h1>
+        <div className="max-w-6xl mx-auto p-6 pt-0">
+            {/* <h1 className="text-3xl font-semibold text-centerp-4mb-6 text-gray-800">Fiyat Yönetimi</h1> */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {/* Fiyat Ekleme/Güncelleme Formu */}
                 <div className="bg-white p-6 rounded-lg shadow-md">
                     <h2 className="text-xl font-semibold mb-4 text-gray-800">{isEditing ? 'Fiyat Güncelle' : 'Yeni Fiyat Ekle'}</h2>
@@ -148,7 +148,7 @@ const AdminPrice = () => {
                 </div>
 
                 {/* Fiyat Listesi */}
-                <div className="bg-white p-6 rounded-lg shadow-md">
+                <div className="bg-white p-6 rounded-lg shadow-md ">
                     <h2 className="text-xl font-semibold mb-4 text-gray-800">Fiyat Listesi</h2>
 
                     <div className="overflow-x-auto">

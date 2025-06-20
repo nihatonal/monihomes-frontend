@@ -11,6 +11,15 @@
   height: auto;
   overflow: visible;
 }
-html {
+/* html {
   scroll-behavior: smooth;
+} */
+.swiper-container-custom {
+  height: 400px;
+}
+
+@media (max-width: 768px) {
+  .swiper-container-custom {
+    height: 310px;
+  }
 }

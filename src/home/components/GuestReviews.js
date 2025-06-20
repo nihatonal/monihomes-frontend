@@ -75,6 +75,7 @@ export default function GuestReviews() {
         try {
             const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/google_reviews`);
             const data = await res.json();
+
             const result = data.data.result.reviews.map((item) => addProperty(item, "source"));
             return result;
         } catch (err) {
@@ -96,10 +97,12 @@ export default function GuestReviews() {
         } else {
             // Cache yoksa veya cache süresi geçmişse, veriyi fetch et
             fetchReviews().then((data) => {
-                setGoogleReviews(data);
-                // Yeni veriyi localStorage'a kaydet
-                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
-                localStorage.setItem(`${CACHE_KEY}_timestamp`, currentTime.toString());
+                if (data && data.length > 0) {
+                    setGoogleReviews(data);
+                    // Yeni veriyi localStorage'a kaydet
+                    localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                    localStorage.setItem(`${CACHE_KEY}_timestamp`, currentTime.toString());
+                }
             });
         }
 
@@ -108,17 +111,8 @@ export default function GuestReviews() {
         handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, []);
+    }, [CACHE_EXPIRATION]);
 
-    function compare(a, b) {
-        if (a[0] < b[0]) {
-            return -1;
-        }
-        if (a[0] > b[0]) {
-            return 1;
-        }
-        return 0;
-    }
 
     useEffect(() => {
         setAllReviews([...googleReviews, ...reviews_airbnb].sort((a, b) => a.time - b.time));

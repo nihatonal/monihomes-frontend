@@ -5,7 +5,8 @@
     "reservation": "Rezervasyon",
     "reviews": "Yorumlar",
     "location": "Lokasyon",
-    "contact": "İletişim"
+    "contact": "İletişim",
+    "instructions": "Oda Talimatları"
   },
   "hero": {
     "title": "Fethiye'nin Kalbinde Unutulmaz Bir Tatil",
@@ -57,11 +58,12 @@
     "title": "Konforlu ve Modern Odalar",
     "subtitle": "Monihomes'te rahatınızı ön planda tutan ferah ve modern odalar sizi bekliyor.",
     "features": {
-      "apartment": "1+0 Daire Konsepti",
+      "apartment": "Odalarımız 1+0 konseptindedir (2 yetişkin ve 1 çocuk için uygundur)",
       "ac": "Klima",
       "wifi": "Ücretsiz WiFi",
       "laundry": "Çamaşır ve Kurutma Makinesi",
-      "location": "Fethiye Merkez’de Harika Konum"
+      "location": "Fethiye Merkez’de Harika Konum",
+      "suitability": "2 yetişkin ve 1 çocuk için uygundur"
     },
     "cta": "Rezervasyon Yap"
   },
@@ -76,14 +78,18 @@
   "fethiye": {
     "title": "Fethiye'nin Kalbinde Konaklayın!",
     "description": "Şehrin en özel noktalarına sadece birkaç adım mesafede, rahat ve huzurlu bir konaklama deneyimi sizi bekliyor.",
-    "button": "Hemen Rezervasyon Yap"
+    "button": "Hemen Rezervasyon Yap",
+    "fish_restaurants": "Balık Hali",
+    "paspatur": "Paspatur Çarşısı",
+    "coastal": "Kordon Yürüyüş Yolu",
+    "walking_distance": "dakikalık yürüme mesafesinde"
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
     "questions": [
       {
         "question": "Otopark var mı?",
-        "answer": "Evet, ücretli otoparkımız mevcuttur."
+        "answer": "Evet, ücretli otoparkımız mevcuttur. Monihomes misafirlerine özel indirim uygulanmaktadır."
       },
       {
         "question": "Evcil hayvan kabul ediyor musunuz?",
@@ -96,7 +102,10 @@
       {
         "question": "Hangi ödeme seçenekleri mevcut?",
         "answer": "Ödemeleri nakit, banka havalesi ve kredi kartı ile kabul ediyoruz. Banka bilgileri veya daha fazla bilgi için lütfen bizimle iletişime geçin."
-
+      },
+      {
+        "question": "Kahvaltı hizmeti sunuluyor mu?",
+        "answer": "Hayır, apartımızda kahvaltı hizmeti bulunmamaktadır."
       }
     ]
   },
@@ -117,6 +126,44 @@
     "menu": "Menu",
     "socials": "Bizi Takip Edin",
     "subtitle": "Monihomes – Fethiye’de konforlu bir konaklama deneyimi.",
-    "success": "Mesajınız başarıyla gönderildi! Sizinle en kısa sürede iletişime geçeceğiz."
+    "success": "Mesajınız başarıyla gönderildi! Sizinle en kısa sürede iletişime geçeceğiz.",
+    "privacyPolicy": "Gizlilik Politikası"
+  },
+  "villaSection": {
+    "title": "Özel Villalarımız",
+    "cta": "Keşfet"
+  },
+  "villa1": {
+    "title": "Barkın Villa Fethiye",
+    "description": "Doğayla iç içe konumu, özel havuzu ve modern tasarımıyla Barkın Villa Fethiye, size huzurlu ve konforlu bir tatil deneyimi sunuyor."
+  },
+  "villa2": {
+    "title": "Villa Masal Fethiye",
+    "description": "Yeşillikler içinde huzurlu atmosferi, geniş bahçesi ve özel havuzuyla Villa Masal, sevdiklerinizle keyifli anlar geçirmeniz için ideal bir kaçış noktasıdır."
+  },
+  "roomInstructions": {
+    "cta": " Oda talimatlarını buradan inceleyin.",
+    "title": "ODA TALİMATLARI",
+    "subtitle": "Konforlu bir konaklama için aşağıdaki bilgileri dikkate almanızı rica ederiz.",
+    "closing": "🤗 Anlayışınız için teşekkür ederiz. Monihomes olarak size harika bir tatil dileriz!",
+    "items": [
+      "Girişlerde anahtarlıkta takılı olan kartları elektrik yuvasına takınız.",
+      "Wi-Fi için kapının arkasında bulunan karekodu okutabilirsiniz.",
+      "Klima çalışırken lütfen kapıyı ve camları kapalı tutunuz.",
+      "Sineklikleri kapalı tutarak sineklerden korunabilir, sinek kovucuyu prize takabilirsiniz.",
+      "Tuvalet kağıdı yedeği banyoda lavabonun altındadır.",
+      "Çamaşır ve kurutma makineleri ortak alandadır. Askılık elbise dolabının yanında; ütü ve ütü masası makinenin yanındadır.",
+      "Gece 00.00 ile sabah 07.00 arasında çamaşır makinesi kullanılmamalıdır.",
+      "Odadan çıkarken kartı arka cebinize koymayınız. Oturunca kırılabilir.",
+      "Odalarımızda kesinlikle sigara içilmemektedir.",
+      "Yüksek sesle müzikten kaçınınız. Duvarlar bitişik odalarla incedir.",
+      "Oda içerisinde temiz terlik ve havlular mevcuttur. Eksik varsa lütfen bizimle iletişime geçin.",
+      "Ortak alanlarda terlik giymeniz rica olunur.",
+      "Koku hassasiyetiniz varsa banyodaki kokuları kaldırabilir veya bize bildirebilirsiniz.",
+      [
+        "Giriş saatleri 15.00 – 16.00",
+        "Çıkış saatleri 10.00 – 11.00 arasındadır."
+      ]
+    ]
   }
 }

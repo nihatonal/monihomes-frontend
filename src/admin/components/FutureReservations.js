@@ -29,8 +29,9 @@ function FutureReservations({ events }) {
                 paymentStatus: paymentStatuses.some(status => event.description?.toLowerCase().includes(status)) ?? false,
             };
         });
+        console.log(parsedReservations.filter((item) => new Date(item.start) > new Date()));
 
-        setReservations(parsedReservations);
+        setReservations(parsedReservations.filter((item) => new Date(item.start) > new Date()));
     }, [events]);
 
 
@@ -46,37 +47,55 @@ function FutureReservations({ events }) {
 
     return (
         <div>
-            <h4 className="text-gray-800 font-semibold mb-4 text-lg">Gelecek Rezervasyonlar</h4>
-            <ul className="space-y-4 max-h-[500px] overflow-y-auto pr-2">
+            <h3 className="text-md font-semibold text-gray-700 mb-3">Gelecek Rezervasyonlar</h3>
+            <div className="flex gap-4 overflow-x-auto pb-4">
+                
                 {filteredReservations.map((reservation) => (
-                    <li key={reservation.id} className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition">
-                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
-                            <div>
-                                <p className="font-semibold text-indigo-600">{reservation.customerName}</p>
-                                <p className="text-sm text-gray-500">{reservation.room}</p>
-                                <p className="text-sm text-gray-500">
-                                    {reservation.start} → {reservation.end}
-                                </p>
-                            </div>
-
-                            <div className="text-sm font-medium">
-                                {reservation.paymentStatus ? (
-                                    <span className="text-green-600">💰 Ödeme Tamamlandı</span>
-                                ) : (
-                                    <span className="text-yellow-600">⌛ Ödeme Bekleniyor</span>
-                                )}
-                            </div>
-
-                            <button
-                                onClick={() => alert(`Rezervasyon Detayı:\n${JSON.stringify(reservation, null, 2)}`)}
-                                className="text-blue-600 hover:text-blue-800 font-medium text-sm"
-                            >
-                                Detaylar
-                            </button>
+                    <div
+                        key={reservation.id}
+                        className={`w-64 p-4 rounded-xl shadow-md transition-shadow flex flex-col items-center ${reservation.paymentStatus ? "bg-cyan-100" : "bg-white"
+                            }`}>
+                        <div className='rounded-full bg-white w-16 h-16 shadow-xl flex items-center justify-center'>
+                            <span className='text-3xl text-rose-600'>{reservation.customerName.charAt(0)}</span>
                         </div>
-                    </li>
+                        <h4 className="font-semibold text-gray-800 mt-3">{reservation.customerName}</h4>
+                        <p className="text-sm text-gray-600 py-1">{reservation.start} → {reservation.end}</p>
+                        <div className="text-right">
+                            {reservation.paymentStatus ? (
+                                <span className="text-green-600">💰 Ödeme Tamamlandı</span>
+                            ) : (
+                                <span className="text-yellow-600">⌛ Ödeme Bekleniyor</span>
+                            )}
+                        </div>
+                    </div>
+                    // <li key={reservation.id} className="bg-gray-50 p-4 rounded-lg shadow-sm hover:shadow-md transition">
+                    //     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                    //         <div>
+                    //             <p className="font-semibold text-indigo-600">{reservation.customerName}</p>
+                    //             <p className="text-sm text-gray-500">{reservation.room}</p>
+                    //             <p className="text-sm text-gray-500">
+                    //                 {reservation.start} → {reservation.end}
+                    //             </p>
+                    //         </div>
+
+                    //         <div className="text-sm font-medium">
+                    //             {reservation.paymentStatus ? (
+                    //                 <span className="text-green-600">💰 Ödeme Tamamlandı</span>
+                    //             ) : (
+                    //                 <span className="text-yellow-600">⌛ Ödeme Bekleniyor</span>
+                    //             )}
+                    //         </div>
+
+                    //         <button
+                    //             onClick={() => alert(`Rezervasyon Detayı:\n${JSON.stringify(reservation, null, 2)}`)}
+                    //             className="text-blue-600 hover:text-blue-800 font-medium text-sm"
+                    //         >
+                    //             Detaylar
+                    //         </button>
+                    //     </div>
+                    // </li>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 }
